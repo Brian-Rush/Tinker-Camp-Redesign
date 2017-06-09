@@ -7,6 +7,7 @@ using Salon.Objects;
 
 namespace Salon
 {
+  [Collection("Salon")]
   public class ClientTest : IDisposable
   {
     public ClientTest()
