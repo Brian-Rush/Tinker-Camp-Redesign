@@ -92,18 +92,18 @@ namespace Salon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO restaurant (name, cuisine_id) OUTPUT INSERTED.id VALUES (@RestaurantName,@RestaurantCuisineId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO client (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName,@ClientStylistId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@RestaurantName";
+      nameParameter.ParameterName = "@ClientName";
       nameParameter.Value = this.GetName();
 
-      SqlParameter cuisineIdParameter = new SqlParameter();
-      cuisineIdParameter.ParameterName = "@RestaurantCuisineId";
-      cuisineIdParameter.Value = this.GetCuisineId();
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@ClientStylistId";
+      stylistIdParameter.Value = this.GetStylistId();
 
       cmd.Parameters.Add(nameParameter);
-      cmd.Parameters.Add(cuisineIdParameter);
+      cmd.Parameters.Add(stylistIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -128,5 +128,40 @@ namespace Salon.Objects
         cmd.ExecuteNonQuery();
         conn.Close();
       }
+    public static Client Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM client WHERE id = @ClientId;", conn);
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(clientIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundClientlientId = 0;
+      string foundClientlientName = null;
+      int foundClientlientCuisineId = 0;
+
+      while(rdr.Read())
+      {
+        foundClientlientId = rdr.GetInt32(0);
+        foundClientlientName = rdr.GetString(1);
+        foundClientlientCuisineId = rdr.GetInt32(2);
+      }
+      Client foundClientlient = new Client(foundClientlientName,foundClientlientCuisineId, foundClientlientId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return foundClientlient;
+    }
   }
 }
