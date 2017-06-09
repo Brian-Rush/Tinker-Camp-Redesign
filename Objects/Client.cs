@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
 
-namespace Salon.Objects
+namespace Salon
 {
   public class Client
   {
@@ -12,9 +12,9 @@ namespace Salon.Objects
 
     public Client(string Name, int StylistId, int Id = 0)
     {
-      _id = Id;
       _name = Name;
       _stylistId = StylistId;
+      _id = Id;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -60,7 +60,7 @@ namespace Salon.Objects
     {
       List<Client> allClients = new List<Client>{};
 
-      SqlConnection conn =DB.Connection();
+      SqlConnection conn = DB.Connection();
       conn.Open();
 
       SqlCommand cmd =new SqlCommand("SELECT * FROM client;", conn);
@@ -71,7 +71,7 @@ namespace Salon.Objects
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
         int clientStylistId = rdr. GetInt32(2);
-        Client newClient = new Client(clientName,clientStylistId, clientId);
+        Client newClient = new Client(clientName, clientStylistId, clientId);
         allClients.Add(newClient);
       }
 
@@ -140,17 +140,17 @@ namespace Salon.Objects
       cmd.Parameters.Add(clientIdParameter);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      int foundClientlientId = 0;
-      string foundClientlientName = null;
-      int foundClientlientCuisineId = 0;
+      int foundClientId = 0;
+      string foundClientName = null;
+      int foundClientStylistId = 0;
 
       while(rdr.Read())
       {
-        foundClientlientId = rdr.GetInt32(0);
-        foundClientlientName = rdr.GetString(1);
-        foundClientlientCuisineId = rdr.GetInt32(2);
+        foundClientId = rdr.GetInt32(0);
+        foundClientName = rdr.GetString(1);
+        foundClientStylistId = rdr.GetInt32(2);
       }
-      Client foundClientlient = new Client(foundClientlientName,foundClientlientCuisineId, foundClientlientId);
+      Client foundClient = new Client(foundClientName,foundClientId, foundClientStylistId);
 
       if (rdr != null)
       {
@@ -161,7 +161,7 @@ namespace Salon.Objects
         conn.Close();
       }
 
-      return foundClientlient;
+      return foundClient;
     }
   }
 }

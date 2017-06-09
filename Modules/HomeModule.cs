@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using Nancy;
 using Nancy.ViewEngines.Razor;
-using Salon.Objects;
+
 
 namespace Salon
 {
@@ -57,7 +57,7 @@ namespace Salon
          Stylist SelectedStylist = Stylist.Find(parameters.id);
          List<Client> StylistClients = SelectedStylist.GetClients();
          model.Add("stylist", SelectedStylist);
-         model.Add("restaurants", StylistClients);
+         model.Add("clients", StylistClients);
          return View["stylist_edit.cshtml", model];
        };
        Patch["/stylist/edit/{id}"] = parameters => {
@@ -71,9 +71,14 @@ namespace Salon
          Stylist SelectedStylist = Stylist.Find(parameters.id);
          List<Client> StylistClients = SelectedStylist.GetClients();
          model.Add("stylist", SelectedStylist);
-         model.Add("restaurants", StylistClients);
+         model.Add("clients", StylistClients);
          return View["stylist_delete.cshtml", model];
        };
+       Delete["/stylist/delete/{id}"] = parameters => {
+         Stylist SelectedStylist = Stylist.Find(parameters.id);
+         SelectedStylist.Delete();
+         return View["success.cshtml"];
+      };
     }
   }
 }

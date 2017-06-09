@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using Salon.Objects;
+
 
 namespace Salon
 {
@@ -13,6 +13,10 @@ namespace Salon
     public ClientTest()
     {
         DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Salon_test;Integrated Security=SSPI;";
+    }
+    public void Dispose()
+    {
+      Client.DeleteAll();
     }
 
     [Fact]
@@ -72,7 +76,7 @@ namespace Salon
     public void Test_Find_FindsClientInDatabase()
     {
       //Arrange
-      Client testClient = new Client("Manny",1);
+      Client testClient = new Client("James",1);
       testClient.Save();
 
       //Act
@@ -80,10 +84,6 @@ namespace Salon
 
       //Assert
       Assert.Equal(testClient, foundClient);
-    }
-    public void Dispose()
-    {
-      Client.DeleteAll();
     }
   }
 }

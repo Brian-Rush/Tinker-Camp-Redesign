@@ -1,6 +1,6 @@
 <h1>Salon Paws</h1>
  <hr />
-<h2>Edit Stylist: @Model["cuisine"].GetType()</h2>
+<h2>Edit Stylist: @Model["stylist"].GetName()</h2>
 <form action='/stylist/edit/@Model["stylist"].GetId()' method="post">
   <input type="hidden" name="_method" value="PATCH">
   <input name="stylist-id" type="hidden" value='@Model["stylist"].GetId()'>

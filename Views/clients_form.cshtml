@@ -5,7 +5,7 @@
   <select name="stylist-id">
     @foreach (var stylist in Model)
     {
-      <option value="@stylist.GetId()">@stylist.GetType()</option>
+      <option value="@stylist.GetId()">@stylist.GetName()</option>
     }
   </select>
   <button type="submit">Add new client</button>
