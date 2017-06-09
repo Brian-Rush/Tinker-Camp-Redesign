@@ -1,0 +1,17 @@
+<h1>Best Restaurants</h1>
+<hr/>
+<h2>Cuisine Type:</h2>
+<ul>
+  @if (Model.Count != 0)
+  {
+    @foreach (var cuisine in Model)
+    {
+      <li><a href="/cuisines/@cuisine.GetId()">@cuisine.GetType()</a> | <a href="/cuisine/edit/@cuisine.GetId()">Edit</a>| <a href="/cuisine/delete/@cuisine.GetId()">Delete</a></li>
+    }
+  }
+</ul>
+<h4><a href="/cuisines/new">Add a new cuisine type</a></h4>
+<h4><a href="/">Return home</a></h4>
+<form action="/cuisines/clear" method="post">
+  <button type="submit">Clear all cuisines</button>
+</form>
