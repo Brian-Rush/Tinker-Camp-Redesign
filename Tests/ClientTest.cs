@@ -11,7 +11,7 @@ namespace Salon
   {
     public ClientTest()
     {
-        DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=client_test;Integrated Security=SSPI;";
+        DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Salon_test;Integrated Security=SSPI;";
     }
 
     [Fact]
@@ -24,31 +24,31 @@ namespace Salon
       Assert.Equal(0, result);
     }
 
-    // [Fact]
-    // public void Test_Equal_ReturnsTrueIfNameAreTheSame()
-    // {
-    //   //Arrange, Act
-    //   Client firstClient = new Client("Manny", 1);
-    //   Client secondClient = new Client("Manny", 1);
-    //
-    //   //Assert
-    //   Assert.Equal(firstClient, secondClient);
-    // }
-    //
-    // [Fact]
-    // public void Test_Save_SavesToDatabase()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Manny",1);
-    //
-    //   //Act
-    //   testClient.Save();
-    //   List<Client> result = Client.GetAll();
-    //   List<Client> testList = new List<Client>{testClient};
-    //
-    //   //Assert
-    //   Assert.Equal(testList, result);
-    // }
+    [Fact]
+    public void Test_Equal_ReturnsTrueIfNameAreTheSame()
+    {
+      //Arrange, Act
+      Client firstClient = new Client("Manny", 1);
+      Client secondClient = new Client("Manny", 1);
+
+      //Assert
+      Assert.Equal(firstClient, secondClient);
+    }
+
+    [Fact]
+    public void Test_Save_SavesToDatabase()
+    {
+      //Arrange
+      Client testClient = new Client("Manny",1);
+
+      //Act
+      testClient.Save();
+      List<Client> result = Client.GetAll();
+      List<Client> testList = new List<Client>{testClient};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
     //
     // [Fact]
     // public void Test_Save_AssignsIdToObject()
