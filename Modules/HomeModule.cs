@@ -39,7 +39,7 @@ namespace Salon
         newClient.Save();
         return View["success.cshtml"];
        };
-       Post["/clients/delete"] = _ => {
+       Post["/clients/clear"] = _ => {
          Client.DeleteAll();
          return View["cleared.cshtml"];
        };
