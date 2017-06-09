@@ -1,14 +1,14 @@
-<h1>Add a new Restaurant</h1>
-<form action="/restaurants/new" method="post">
-  <label for="restaurant-name">Restaurant name:</label>
-  <input id="restaurant-name" name="restaurant-name" type="text">
-  <select name="cuisine-id">
-    @foreach (var cuisine in Model)
+<h1>Add a new Client</h1>
+<form action="/clients/new" method="post">
+  <label for="client-name">Client name:</label>
+  <input id="client-name" name="client-name" type="text">
+  <select name="stylist-id">
+    @foreach (var stylist in Model)
     {
-      <option value="@cuisine.GetId()">@cuisine.GetType()</option>
+      <option value="@stylist.GetId()">@stylist.GetType()</option>
     }
   </select>
-  <button type="submit">Add new restaurant</button>
+  <button type="submit">Add new client</button>
 </form>
 <p><a href="/">Back home</a></p>
-<p><a href="/restaurants">View all restaurants</a></p>
+<p><a href="/clients">View all clients</a></p>

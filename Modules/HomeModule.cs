@@ -10,7 +10,16 @@ namespace Salon
   {
     public HomeModule()
     {
-
+      Get["/"]= _ =>
+      {
+        List<Stylist> AllStylist = Stylist.GetAll();
+        return View["index.cshtml", AllStylist];
+      };
+      Get["/stylists"]= _ =>
+      {
+        List<Client> AllClient = Client.GetAll();
+        return View["clients.cshtml", AllClient];
+      };
     }
   }
 }
