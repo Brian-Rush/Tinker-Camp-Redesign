@@ -10,25 +10,25 @@ namespace Salon.Objects
     private string _name;
     private int _stylistId;
 
-    public Restaurant(string Name, int StylistId, int Id = 0)
+    public Client(string Name, int StylistId, int Id = 0)
     {
       _id = Id;
       _name = Name;
-      _cuisineId = StylistId;
+      _stylistId = StylistId;
     }
 
-    public override bool Equals(System.Object otherRestaurant)
+    public override bool Equals(System.Object otherClient)
     {
-    if (!(otherRestaurant is Restaurant))
+    if (!(otherClient is Client))
     {
       return false;
     }
     else
     {
-      Restaurant newRestaurant = (Restaurant) otherRestaurant;
-      bool idEquality = (this.GetId() == newRestaurant.GetId());
-      bool nameEquality = (this.GetName() == newRestaurant.GetName());
-      bool cuisineEquality = this.GetStylistId()== newRestaurant.GetStylistId();
+      Client newClient = (Client) otherClient;
+      bool idEquality = (this.GetId() == newClient.GetId());
+      bool nameEquality = (this.GetName() == newClient.GetName());
+      bool cuisineEquality = this.GetStylistId()== newClient.GetStylistId();
       return (idEquality && nameEquality && cuisineEquality);
     }
   }
@@ -49,11 +49,11 @@ namespace Salon.Objects
 
     public int GetStylistId()
     {
-      return _cuisineId;
+      return _stylistId;
     }
     public void SetStylistId(int newStylistId)
     {
-      _cuisineId = newStylistId;
+      _stylistId = newStylistId;
     }
 
 
