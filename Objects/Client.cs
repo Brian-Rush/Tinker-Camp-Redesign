@@ -87,6 +87,39 @@ namespace Salon.Objects
       return allClients;
 
     }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO restaurant (name, cuisine_id) OUTPUT INSERTED.id VALUES (@RestaurantName,@RestaurantCuisineId);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@RestaurantName";
+      nameParameter.Value = this.GetName();
+
+      SqlParameter cuisineIdParameter = new SqlParameter();
+      cuisineIdParameter.ParameterName = "@RestaurantCuisineId";
+      cuisineIdParameter.Value = this.GetCuisineId();
+
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(cuisineIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
     public static void DeleteAll()
       {
         SqlConnection conn = DB.Connection();
