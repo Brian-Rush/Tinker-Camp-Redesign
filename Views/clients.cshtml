@@ -8,7 +8,9 @@ else
   <ul>
     @foreach (var client in Model)
     {
-      <li>@client.GetName()</li>
+
+      <li>@client.GetName()</a> | <a href="/client/edit/@client.GetId()">Edit</a>| <a href="/client/delete/@client.GetId()">Delete</a></li>
+
     }
   </ul>
   <form action="/clients/delete" method="post">

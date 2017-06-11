@@ -9,7 +9,7 @@ else
   <ol>
     @foreach (var client in @Model["clients"])
     {
-      <li>@client.GetName()</li>
+        <li><a href="/clients/@client.GetId()">@client.GetName()</a> | <a href="/stylist/edit/@client.GetId()">Edit</a>| <a href="/stylist/delete/@client.GetId()">Delete</a></li>
     }
   </ol>
 }

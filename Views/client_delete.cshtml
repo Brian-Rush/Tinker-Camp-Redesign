@@ -1,0 +1,9 @@
+<h1>Salon Paws</h1>
+<hr/>
+<h2>Are you sure you want to delete this client?</h2>
+<h4>@Model["client"].GetName()</h4>
+<form action='/client/delete/@Model["client"].GetId()' method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete</button>
+</form>
+<p><a href="/">Back home</a></p>
