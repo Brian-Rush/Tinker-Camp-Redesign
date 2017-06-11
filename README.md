@@ -1,14 +1,14 @@
-# Word Counter
+# Hair Salon app
 
-#### An Epicodus exercise in xUnit testing, 06.02.17
+#### An Epicodus exercise in xUnit testing, 06.09.17
 
 #### **By Nick Wise***
 
 ## Description
 
-This web application will take one word as user input and compare it to a string of words the user has also inputted. Finding all the matches of the single word in the following string.
+This web application will allow a Owner to enter, edit and delete an employed Stylist. The Stylist can look up the names of the Clients they have and add, edit, or remove the specified Client. This application is meant for Stylist mainly to keep track of their Clients and view other Stylist Clients.
 
-| Word Counter behavior | input  | output  |
+| Hair Salon behavior | input  | output  |
 |---|---|---|
 | Program will allow Employee to see list of stylist | nancy, josh, jenny | nancy, josh, jenny | - Need a page that displays all currently employed stylists.
 | Employee can look under a specific stylist to see there details and clients |jenny | Name: "jenny" Clients: "Frank", "Bob", "Sally" | - on click route to id of selected stylist
