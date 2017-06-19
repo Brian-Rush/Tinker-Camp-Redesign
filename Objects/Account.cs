@@ -6,6 +6,7 @@ namespace Account.Objects
 {
   public class Account
   {
+    private int _id;
     private string _firstName;
     private string _lastName;
     private string _address;
@@ -16,8 +17,9 @@ namespace Account.Objects
     private string _email;
     private string _code;
 
-    public Account(string FirstName, string LastName, string Address, string City, string State, string Zip, string Phone, string email, string code)
+    public Account(string FirstName, string LastName, string Address, string City, string State, string Zip, string Phone, string email, string code, int id = 0)
     {
+      _id = id;
       _firstName = FirstName;
       _lastName = LastName;
       _address = Address;

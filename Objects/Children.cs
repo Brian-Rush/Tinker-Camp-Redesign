@@ -6,6 +6,7 @@ namespace Children.Objects
 {
   public class Children
   {
+    private int _id;
     private string _firstName;
     private string _lastName;
     private int _age;
@@ -16,17 +17,18 @@ namespace Children.Objects
     private int _zip;
     private string _phone;
 
-    public Children(string firstName, string lastName, int age, string genderPronoun, string race, string address, string city, int zip, string phone)
+    public Children(string firstName, string lastName, int age, string genderPronoun, string race, string address, string city, int zip, string phone, int id = 0)
     {
-       _firstName = firstName;
-       _lastName = lastName;
-       _age = age;
-       _genderPronoun = genderPronoun;
-       _race = race;
-       _address = address;
-       _city = city;
-       _zip = zip;
-       _phone = phone;
+      _id = id;
+      _firstName = firstName;
+      _lastName = lastName;
+      _age = age;
+      _genderPronoun = genderPronoun;
+      _race = race;
+      _address = address;
+      _city = city;
+      _zip = zip;
+      _phone = phone;
     }
     private string GetFirstName()
     {
