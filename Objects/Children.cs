@@ -14,10 +14,11 @@ namespace Children.Objects
     private string _race;
     private string _address;
     private string _city;
+    private string _state;
     private int _zip;
     private string _phone;
 
-    public Children(string firstName, string lastName, int age, string genderPronoun, string race, string address, string city, int zip, string phone, int id = 0)
+    public Children(string firstName, string lastName, int age, string genderPronoun, string race, string address, string city, string state, int zip, string phone, int id = 0)
     {
       _id = id;
       _firstName = firstName;
@@ -27,6 +28,7 @@ namespace Children.Objects
       _race = race;
       _address = address;
       _city = city;
+      _state = state;
       _zip = zip;
       _phone = phone;
     }
@@ -50,7 +52,7 @@ namespace Children.Objects
     {
       return _state;
     }
-    private string GetZip()
+    private int GetZip()
     {
       return _zip;
     }
