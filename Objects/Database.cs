@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-
-namespace Salon
+namespace Tinker
 {
   public class DB
   {

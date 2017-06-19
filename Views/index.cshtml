@@ -1,3 +1,17 @@
-<h1>Salon Paws</h1>
-<h4><a href="/stylists">View Stylists</a></h4>
-<h4><a href="/clients">View Clients</a></h4>
+@* The '@' is 'Razer' syntax. It lets the developer have C# access in html files. 
+
+Example below:
+@{
+  for(int a = 0; a <= 10; a++)
+  {
+    if(a == 4)
+    {
+      return a;
+    }
+  }
+} *@
+@{
+  Layout = "Shared/_layout.cshtml";
+}
+
+<p>Hello World!</p>

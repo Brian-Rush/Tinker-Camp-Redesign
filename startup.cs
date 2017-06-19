@@ -6,7 +6,7 @@ using Nancy;
 using Nancy.ViewEngines.Razor;
 
 
-namespace Salon
+namespace Tinker
 {
   public class Startup
   {
@@ -41,6 +41,6 @@ namespace Salon
   }
   public static class DBConfiguration
   {
-    public static string ConnectionString = "Data Source = (localdb)\\mssqllocaldb;Initial Catalog= Salon;Integrated Security=SSPI;";
+    public static string ConnectionString = "Data Source = (localdb)\\mssqllocaldb;Initial Catalog= tinker;Integrated Security=SSPI;";
   }
 }
