@@ -27,8 +27,9 @@ namespace Salon
       };
       Post["stylists/new"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
+        List<Stylist> AllStylist = Stylist.GetAll();
         newStylist.Save();
-        return View["success.cshtml"];
+        return View["success.cshtml", AllStylist];
       };
       Get["/clients/new"] = _ => {
         List<Stylist> AllClient = Stylist.GetAll();
@@ -36,10 +37,10 @@ namespace Salon
       };
       Post["/clients/new"] = _ => {
 
-        Client newClient = new Client (Request.Form["client-name"],                                Request.Form["stylist-id"]);
-
+        Client newClient = new Client (Request.Form["client-name"], Request.Form["stylist-id"]);
+        List<Client> AllClient = Client.GetAll();
         newClient.Save();
-        return View["success.cshtml"];
+        return View["clients.cshtml", AllClient];
        };
        Post["/clients/clear"] = _ => {
          Client.DeleteAll();
@@ -52,7 +53,7 @@ namespace Salon
          model.Add("stylist", SelectedStylist);
          model.Add("clients", StylistClients);
 
-         return View["client.cshtml", model];
+         return View["clients.cshtml", model];
        };
        Get["/client/edit/{id}"] = parameters => {
          Dictionary<string, object> model = new Dictionary<string, object>();

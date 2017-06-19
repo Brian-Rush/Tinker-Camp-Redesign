@@ -11,7 +11,7 @@ namespace Salon
     private int _stylistId;
     private int _id;
 
-    public Client(string Name, int StylistId, int Id = 0)
+    public Client(string Name, int StylistId = 0, int Id = 0)
     {
       _name = Name;
       _stylistId = StylistId;
