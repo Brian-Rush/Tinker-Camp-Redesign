@@ -33,9 +33,9 @@ namespace Account.Objects
     {
       return _firstName;
     }
-    private string GetSecondName()
+    private string GetLastName()
     {
-      return _secondName;
+      return _lastName;
     }
     private string GetAddress()
     {
@@ -52,7 +52,7 @@ namespace Account.Objects
     private string GetZip()
     {
       return _zip;
-    } 
+    }
     private string GetPhone()
     {
       return _phone;
