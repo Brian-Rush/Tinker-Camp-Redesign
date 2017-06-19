@@ -12,12 +12,12 @@ namespace Tinker
     private string _address;
     private string _city;
     private string _state;
-    private string _zip;
+    private int _zip;
     private string _phone;
     private string _email;
     private string _code;
 
-    public Parent(string FirstName, string LastName, string Address, string City, string State, string Zip, string Phone, string Email, string Code, int id = 0)
+    public Parent(string FirstName, string LastName, string Address, string City, string State, int Zip, string Phone, string Email, string Code, int id = 0)
     {
       _id = id;
       _firstName = FirstName;
@@ -31,43 +31,43 @@ namespace Tinker
       _code = Code;
     }
 
-    private int GetId()
+    public int GetId()
     {
       return _id;
     }
-    private string GetFirstName()
+    public string GetFirstName()
     {
       return _firstName;
     }
-    private string GetLastName()
+    public string GetLastName()
     {
       return _lastName;
     }
-    private string GetAddress()
+    public string GetAddress()
     {
       return _address;
     }
-    private string GetCity()
+    public string GetCity()
     {
       return _city;
     }
-    private string GetState()
+    public string GetState()
     {
       return _state;
     }
-    private string GetZip()
+    public int GetZip()
     {
       return _zip;
     }
-    private string GetPhone()
+    public string GetPhone()
     {
       return _phone;
     }
-    private string GetEmail()
+    public string GetEmail()
     {
       return _email;
     }
-    private string GetCode()
+    public string GetCode()
     {
       return _code;
     }
@@ -99,38 +99,38 @@ namespace Tinker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Object (firstName, lastName, address, city, state, zip, phone, email, code) OUTPUT INSERTED.id VALUES (@firstName, @lastName, @address, @city, @state, @zip, @phone, @email, @code);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Object (First, Last, Address, City, State, Zip, Phone, Email, Code) OUTPUT INSERTED.id VALUES (@firstName, @lastName, @address, @city, @state, @zip, @phone, @email, @code);", conn);
 
-      SqlParameter firstNameParameter = new SqlParameter("firstName", this.GetFirstName());
-      cmd.firstNameParameter.Add();
+      SqlParameter firstNameParameter = new SqlParameter("@firstName", this.GetFirstName());
+      cmd.Parameters.Add(firstNameParameter);
 
-      SqlParameter lastNameParameter = new SqlParameter("lastName", this.GetLastName());
-      cmd.lastNameParameter.Add();
+      SqlParameter lastNameParameter = new SqlParameter("@lastName", this.GetLastName());
+      cmd.Parameters.Add(lastNameParameter);
 
-      SqlParameter addressParameter = new SqlParameter("address", this.address());
-      cmd.addressParameter.Add();
+      SqlParameter addressParameter = new SqlParameter("@address", this.GetAddress());
+      cmd.Parameters.Add(addressParameter);
 
-      SqlParameter cityParameter = new SqlParameter("city", this.GetCity());
-      cmd.cityParameter.Add();
+      SqlParameter cityParameter = new SqlParameter("@city", this.GetCity());
+      cmd.Parameters.Add(cityParameter);
 
-      SqlParameter stateParameter = new SqlParameter("state", this.GetState()));
-      cmd.stateParameter.Add();
+      SqlParameter stateParameter = new SqlParameter("@state", this.GetState());
+      cmd.Parameters.Add(stateParameter);
 
-      SqlParameter zipParameter = new SqlParameter("zip", this.GetZip());
-      cmd.zipParameter.Add();
+      SqlParameter zipParameter = new SqlParameter("@zip", this.GetZip());
+      cmd.Parameters.Add(zipParameter);
 
-      SqlParameter phoneParameter = new SqlParameter("phone", this.GetPhone());
-      cmd.phoneParameter.Add();
+      SqlParameter phoneParameter = new SqlParameter("@phone", this.GetPhone());
+      cmd.Parameters.Add(phoneParameter);
 
-      SqlParameter emailParameter = new SqlParameter("email", this.GetEmail());
-      cmd.emailParameter.Add();
+      SqlParameter emailParameter = new SqlParameter("@email", this.GetEmail());
+      cmd.Parameters.Add(emailParameter);
 
-      SqlParameter codeParameter = new SqlParameter("code", this.GetCode());
-      cmd.codeParameter.Add();
+      SqlParameter codeParameter = new SqlParameter("@code", this.GetCode());
+      cmd.Parameters.Add(codeParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      While(rdr.Read())
+      while(rdr.Read())
       {
         this._id = rdr.GetInt32(0);
       }
@@ -144,12 +144,97 @@ namespace Tinker
       }
 
     }
+
+    public static List<Parent> GetAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object", conn);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Parent> listOfParents = new List<Parent>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string address = rdr.GetString(3);
+        string city = rdr.GetString(4);
+        string state = rdr.GetString(5);
+        int zip = rdr.GetInt32(6);
+        string phone = rdr.GetString(7);
+        string email = rdr.GetString(8);
+        string code = rdr.GetString(9);
+        Parent newParent = new Parent(firstName, lastName, address, city, state, zip, phone, email, code, id);
+        listOfParents.Add(newParent);
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return listOfParents;
+    }
+
+    public static Parent Find(int findId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE id = @id", conn);
+      SqlParameter idParam = new SqlParameter("@id", findId);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int id = 0;
+      string firstName = null;
+      string lastName = null;
+      string address = null;
+      string city = null;
+      string state = null;
+      int zip = 0;
+      string phone = null;
+      string email = null;
+      string code = null;
+
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        address = rdr.GetString(3);
+        city = rdr.GetString(4);
+        state = rdr.GetString(5);
+        zip = rdr.GetInt32(6);
+        phone = rdr.GetString(7);
+        email = rdr.GetString(8);
+        code = rdr.GetString(9);
+      }
+
+      Parent newParent = new Parent(firstName, lastName, address, city, state, zip, phone, email, code, id);
+
+      if(conn != null)
+      {
+        conn.Close();
+
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      return newParent;
+
+    }
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM accounts");
+      SqlCommand cmd = new SqlCommand("DELETE FROM Parent_Object", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)
