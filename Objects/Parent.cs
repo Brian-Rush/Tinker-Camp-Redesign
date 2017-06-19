@@ -31,7 +31,7 @@ namespace Tinker
       _code = Code;
     }
 
-    public int GetId()
+    public int  d()
     {
       return _id;
     }
