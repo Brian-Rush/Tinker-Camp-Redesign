@@ -4,14 +4,14 @@ using System.Data.SqlClient;
 
 namespace Tinker
 {
-  public class Children
+  public class Child
   {
     private int _id;
     private string _firstName;
     private string _lastName;
     private int _age;
     private int _grade;
-    private string _genderPronoun;
+    private string _gender;
     private string _race;
     private string _address;
     private string _city;
@@ -19,14 +19,14 @@ namespace Tinker
     private int _zip;
     private string _phone;
 
-    public Children(string firstName, string lastName, int age, int grade, string genderPronoun, string race, string address, string city, string state, int zip, string phone, int id = 0)
+    public Child(string firstName, string lastName, int age, int grade, string genderPronoun, string race, string address, string city, string state, int zip, string phone, int id = 0)
     {
       _id = id;
       _firstName = firstName;
       _lastName = lastName;
       _age = age;
       _grade = grade;
-      _genderPronoun = genderPronoun;
+      _gender = genderPronoun;
       _race = race;
       _address = address;
       _city = city;
@@ -35,6 +35,10 @@ namespace Tinker
       _phone = phone;
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
     public string GetFirstName()
     {
       return _firstName;
@@ -65,7 +69,7 @@ namespace Tinker
     }
     public string GetGender()
     {
-      return _genderPronoun;
+      return _gender;
     }
     public string GetRace()
     {
@@ -80,16 +84,16 @@ namespace Tinker
       return _grade;
     }
 
-    public static List<Children> GetAll()
+    public static List<Child> GetAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM Children_Object", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Child_Object", conn);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Children> allChildren = new List<Children>{};
+      List<Child> allChild = new List<Child>{};
 
       while(rdr.Read())
       {
@@ -105,8 +109,8 @@ namespace Tinker
         string state = rdr.GetString(9);
         int zip = rdr.GetInt32(10);
         string phone = rdr.GetString(11);
-        Children newChild = new Children(first, last, age, grade, gender, race, address, city, state, zip, phone, id);
-        allChildren.Add(newChild);
+        Child newChild = new Child(first, last, age, grade, gender, race, address, city, state, zip, phone, id);
+        allChild.Add(newChild);
       }
 
       if(conn != null)
@@ -117,7 +121,7 @@ namespace Tinker
       {
         rdr.Close();
       }
-      return allChildren;
+      return allChild;
     }
 
     public void Save()
@@ -125,7 +129,7 @@ namespace Tinker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO Children_Object (First, Last, Age, Grade, Gender, Race, Address, City, State, Zip, Phone) OUTPUT INSERTED.id VALUES (@first, @second, @age, @grade, @gender, @race, @address, @city, @state, @zip, @phone);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO Child_Object (First, Last, Age, Grade, Gender, Race, Address, City, State, Zip, Phone) OUTPUT INSERTED.id VALUES (@first, @second, @age, @grade, @gender, @race, @address, @city, @state, @zip, @phone);", conn);
 
       SqlParameter firstNameParameters = new SqlParameter("@first", this.GetFirstName());
       cmd.Parameters.Add(firstNameParameters);
@@ -177,12 +181,144 @@ namespace Tinker
       }
     }
 
+    // PLEASE READ BEFORE USING UPDATE!!!!!!!!!!!!!!!!!!!
+    //
+    //  ORIGINAL VARIABLE !!!WILL NOT CHANGE!!!! YOU WILL NEED
+    //  TO PULL THE ORIGINAL CHILD INFORMATION BACK OUT OF
+    //  THE DATABASE IN ORDER TO UPDATE CURRENT INFORMATION
+    //
+    public void Update(string FirstName, string LastName, int Age, int Grade, string Gender, string Race, string Address, string City, string State, int Zip, string Phone)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE Child_Object SET First = @newFirstName, Last = @newLastName, Age = @newAge, Grade = @newGrade, Gender = @newGender, Race = @newRace, Address = @newAddress, City = @newCity, State = @newState, Zip = @newZip, Phone = @newPhone WHERE id = @id", conn);
+
+      SqlParameter newFirstName = new SqlParameter("@newFirstName", FirstName);
+      cmd.Parameters.Add(newFirstName);
+
+      SqlParameter newLastName = new SqlParameter("@newLastName", LastName);
+      cmd.Parameters.Add(newLastName);
+
+      SqlParameter newAge = new SqlParameter("@newAge", Age);
+      cmd.Parameters.Add(newAge);
+
+      SqlParameter newGrade = new SqlParameter("@newGrade", Grade);
+      cmd.Parameters.Add(newGrade);
+
+      SqlParameter newGender = new SqlParameter("@newGender", Gender);
+      cmd.Parameters.Add(newGender);
+
+      SqlParameter newRace = new SqlParameter("@newRace", Race);
+      cmd.Parameters.Add(newRace);
+
+      SqlParameter newAddress = new SqlParameter("@newAddress", Address);
+      cmd.Parameters.Add(newAddress);
+
+      SqlParameter newCity = new SqlParameter("@newCity", City);
+      cmd.Parameters.Add(newCity);
+
+      SqlParameter newState = new SqlParameter("@newState", State);
+      cmd.Parameters.Add(newState);
+
+      SqlParameter newZip = new SqlParameter("@newZip", Zip);
+      cmd.Parameters.Add(newZip);
+
+      SqlParameter newPhone = new SqlParameter("@newPhone", Phone);
+      cmd.Parameters.Add(newPhone);
+
+      SqlParameter oldId = new SqlParameter("@id", this.GetId());
+      cmd.Parameters.Add(oldId);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+        this._firstName = rdr.GetString(1);
+        this._lastName = rdr.GetString(2);
+        this._age = rdr.GetInt32(3);
+        this._grade = rdr.GetInt32(4);
+        this._gender = rdr.GetString(5);
+        this._race = rdr.GetString(6);
+        this._address = rdr.GetString(7);
+        this._city = rdr.GetString(8);
+        this._state = rdr.GetString(9);
+        this._zip = rdr.GetInt32(10);
+        this._phone = rdr.GetString(11);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public static Child Find(int findId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Child_Object WHERE id = @id", conn);
+      SqlParameter idParam = new SqlParameter("@id", findId);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int id = 0;
+      string firstName = null;
+      string lastName = null;
+      int age = 0;
+      int grade = 0;
+      string gender = null;
+      string race = null;
+      string address = null;
+      string city = null;
+      string state = null;
+      int zip = 0;
+      string phone = null;
+
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        age = rdr.GetInt32(3);
+        grade = rdr.GetInt32(4);
+        gender = rdr.GetString(5);
+        race = rdr.GetString(6);
+        address = rdr.GetString(7);
+        city = rdr.GetString(8);
+        state = rdr.GetString(9);
+        zip = rdr.GetInt32(10);
+        phone = rdr.GetString(11);
+      }
+
+      Child newChild = new Child(firstName, lastName, age, grade, gender, race, address, city, state, zip, phone);
+
+      if(conn != null)
+      {
+        conn.Close();
+
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      return newChild;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM Children_Object", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM Child_Object", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)
@@ -198,7 +334,7 @@ namespace Tinker
 
       SqlCommand cmd = new SqlCommand("DELETE FROM Child_Object WHERE id = @id; DELETE FROM Parent_Child WHERE child_id = @id", conn);
 
-      SqlParameter idParam = new SqlParameter("@Id", this.GetId());
+      SqlParameter idParam = new SqlParameter("@id", this.GetId());
       cmd.Parameters.Add(idParam);
 
       cmd.ExecuteNonQuery();
