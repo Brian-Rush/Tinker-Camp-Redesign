@@ -37,6 +37,19 @@ namespace Tinker
       Assert.Equal(testParent, allParent);
     }
 
+    [Fact]
+    public void UpdateParent_UpdatesParentFirstName_True()
+    {
+      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      testParent.Save();
+
+      testParent.Update("James", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+
+      Parent whatParent = Parent.GetAll()[0];
+
+      Assert.Equal("James", whatParent.GetFirstName());
+    }
+
     public void Dispose()
     {
       Parent.DeleteAll();

@@ -229,6 +229,77 @@ namespace Tinker
       return newParent;
     }
 
+    // PLEASE READ BEFORE USING UPDATE!!!!!!!!!!!!!!!!!!!
+    //
+    //  ORIGINAL VARIABLE !!!WILL NOT CHANGE!!!! YOU WILL NEED
+    //  TO PULL THE ORIGINAL CHILD INFORMATION BACK OUT OF
+    //  THE DATABASE IN ORDER TO UPDATE CURRENT INFORMATION
+    //
+    public void Update(string FirstName, string LastName, string Address, string City, string State, int Zip, string Phone, string Email, string Code)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE Parent_Object SET First = @newFirstName, Last = @newLastName, Address = @newAddress, City = @newCity, State = @newState, Zip = @newZip, Phone = @newPhone, Email = @newEmail, Code = @newCode WHERE id = @id", conn);
+
+      SqlParameter newFirstName = new SqlParameter("@newFirstName", FirstName);
+      cmd.Parameters.Add(newFirstName);
+
+      SqlParameter newLastName = new SqlParameter("@newLastName", LastName);
+      cmd.Parameters.Add(newLastName);
+
+      SqlParameter newAddress = new SqlParameter("@newAddress", Address);
+      cmd.Parameters.Add(newAddress);
+
+      SqlParameter newCity = new SqlParameter("@newCity", City);
+      cmd.Parameters.Add(newCity);
+
+      SqlParameter newState = new SqlParameter("@newState", State);
+      cmd.Parameters.Add(newState);
+
+      SqlParameter newZip = new SqlParameter("@newZip", Zip);
+      cmd.Parameters.Add(newZip);
+
+      SqlParameter newPhone = new SqlParameter("@newPhone", Phone);
+      cmd.Parameters.Add(newPhone);
+
+      SqlParameter newEmail = new SqlParameter("@newEmail", Email);
+      cmd.Parameters.Add(newEmail);
+
+      SqlParameter newCode = new SqlParameter("@newCode", Code);
+      cmd.Parameters.Add(newCode);
+
+      SqlParameter oldId = new SqlParameter("@id", this.GetId());
+      cmd.Parameters.Add(oldId);
+
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+        this._firstName = rdr.GetString(1);
+        this._lastName = rdr.GetString(2);
+        this._address = rdr.GetString(3);
+        this._city = rdr.GetString(4);
+        this._state = rdr.GetString(5);
+        this._zip = rdr.GetInt32(6);
+        this._phone = rdr.GetString(7);
+        this._email = rdr.GetString(8);
+        this._code = rdr.GetString(9);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
