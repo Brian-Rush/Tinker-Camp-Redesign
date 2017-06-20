@@ -190,5 +190,24 @@ namespace Tinker
         conn.Close();
       }
     }
+
+    public void Delete(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM Child_Object WHERE id = @id; DELETE FROM Parent_Child WHERE child_id = @id", conn);
+
+      SqlParameter idParam = new SqlParameter("@Id", this.GetId());
+      cmd.Parameters.Add(idParam);
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+    }
   }
 }
