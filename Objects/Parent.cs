@@ -31,7 +31,7 @@ namespace Tinker
       _code = Code;
     }
 
-    public int  d()
+    public int GetId()
     {
       return _id;
     }
@@ -227,14 +227,32 @@ namespace Tinker
         rdr.Close();
       }
       return newParent;
-
     }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
       SqlCommand cmd = new SqlCommand("DELETE FROM Parent_Object", conn);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void Delete(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM Parent_Object WHERE id = @id; DELETE FROM Parent_Child WHERE parent_id = @id", conn);
+
+      SqlParameter idParam = new SqlParameter("@Id", this.GetId());
+      cmd.Parameters.Add(idParam);
+
       cmd.ExecuteNonQuery();
 
       if(conn != null)
