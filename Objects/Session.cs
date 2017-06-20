@@ -9,7 +9,7 @@ namespace Tinker
     private int _id;
     private string _name;
 
-    public Session(int id, string name)
+    public Session(string name, int id = 0)
     {
       _id = id;
       _name = name;
@@ -24,7 +24,34 @@ namespace Tinker
     {
       return _name;
     }
-    
+
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO Session_Object (name) OUTPUT INSERTED.id VALUES (@name);", conn);
+
+      SqlParameter firstNameParameters = new SqlParameter("@name", this.GetName());
+      cmd.Parameters.Add(firstNameParameters);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static Session Find(int findId)
     {
       SqlConnection conn = DB.Connection();
@@ -34,18 +61,18 @@ namespace Tinker
       SqlParameter idParam = new SqlParameter("@id", findId);
       cmd.Parameters.Add(idParam);
 
-      SqlDataReader rdr = cmd.ExecuteReader();
 
       int id = 0;
-      string Name = null;
+      string name = null;
 
+      SqlDataReader rdr = cmd.ExecuteReader();
       while(rdr.Read())
       {
         id = rdr.GetInt32(0);
-        Name = rdr.GetString(1);
+        name = rdr.GetString(1);
       }
 
-      Session newSession = new Session(id, Name);
+      Session newSession = new Session(name, id);
 
       if(conn != null)
       {

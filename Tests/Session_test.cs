@@ -16,27 +16,32 @@ namespace Tinker
     [Fact]
     public void FindSession_FindsSessionInDataBase_True()
     {
-      Session newSession = Session.Find(6);
+      Session newSession = new Session("Miniature World");
+      newSession.Save();
 
-      Assert.Equal("Miniature World", newSession.GetName());
+      Session testSession = Session.Find(newSession.GetId());
+
+      Assert.Equal("Miniature World", testSession.GetName());
     }
 
     [Fact]
-    public void AddSession_AddsSessionToChild_True()
+    public void AddSession_AddChildToSessions_True()
     {
       Child newChild = new Child("Hunter", "Parks", 8, 5, "male" , "native american",  "thisisanaddress", "city", "State",  12345, "12345");
       newChild.Save();
 
-      Session findSession = Session.Find(5);
-      Console.WriteLine(findSession.GetName());
-      Console.WriteLine("TEST");
+      Session findSession = new Session("Miniature World", 1);
+      findSession.Save();
 
-      findSession.AddChild(Child.Find(newChild.GetId()));
+      Session testSession = Session.Find(findSession.GetId());
+      Console.WriteLine(testSession.GetName());
 
-      List<Child> allChildrenEnrolled = findSession.ListEnrolled();
+      testSession.AddChild(newChild);
+
+      List<Child> allChildrenEnrolled = testSession.ListEnrolled();
       List<Child> controlChildren = new List<Child>{newChild};
 
-      Assert.Equal(controlChildren, allChildrenEnrolled);
+      Assert.Equal(controlChildren[0].GetFirstName(), allChildrenEnrolled[0].GetFirstName());
     }
 
     public void Dispose()
