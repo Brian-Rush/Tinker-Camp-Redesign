@@ -6,9 +6,22 @@
 
 
 // FRONT END
+
 $(function() {
+
+  $(".reg-form").validate({
+    rules: {
+      guardianFirstName: "required"
+    },
+    message: {
+      guardianFirstName: "required"
+    }
+  });
+
   $(".parent-continue").click(function(event) {
     event.preventDefault();
+
+    $(".reg-form").valid();
 
     var gFirstName = $("input[name=guardian-first-name]").val();
     var gLastName = $("input[name=guardian-last-name]").val();
@@ -49,4 +62,7 @@ $(function() {
 
     $(".session").after('<select class="session" name="session"><option name="no-extra-session" value="" selected>-</option><option name="miniature-worlds" value="Miniature Worlds">Miniature Worlds (7/10-7/14)</option><option name="carnival" value="Carnival">Carnival (7/17-7/21)</option><option name="flight" value="Flight">Flight (7/24-7/28)</option><option name="urban-adventure" value="Urban Adventure">Urban Adventure (7/31-8/4)</option></select>')
   });
+
+  $(".phone").mask("(999) 999-9999");
+
 });
