@@ -33,7 +33,6 @@ namespace Tinker
       newChild.Save();
 
       Child allChild = Child.Find(testChild.GetId());
-      Console.WriteLine("TEST");
       Assert.Equal(testChild.GetFirstName(), allChild.GetFirstName());
     }
 
