@@ -19,6 +19,16 @@ ChildInfo.prototype.pushToSessionNames = function() {
   }
 }
 
+//Prototype to display each child's sessions registered for
+// ChildInfo.prototype.displayChildSessions = function() {
+
+  // for (i = 0; i < newChildInfo.sessionNames.length; i++ ) {
+  //   var tableRow = "<tr><td>" + this.childName + "</td><td>" + this.sessionNames[i] + "</td><td>" + this.cost + "</td></tr>";
+
+    // return tableRow;
+    // }
+// }
+
 // var arrayOfChildSessions = [];
 
 var clicks = 0;
@@ -31,6 +41,10 @@ function onClick() {
 
 
 $(function() {
+
+  // // Get the modal
+  // var modal = $('#additional-child-modal');
+  //
 //
 //   $(".reg-form").validate({
 //     rules: {
@@ -91,7 +105,7 @@ $(function() {
     event.preventDefault();
 
     if ($('.session').length <= 3) {
-      $(".hidden-div").before('<select class="session session-' + clicks + '"   name="session"><option name="no-extra-session" value="" selected>-</option><option name="miniature-worlds" value="Miniature Worlds">Miniature Worlds (7/10-7/14)</option><option name="carnival" value="Carnival">Carnival (7/17-7/21)</option><option name="flight" value="Flight">Flight (7/24-7/28)</option><option name="urban-adventure" value="Urban Adventure">Urban Adventure (7/31-8/4)</option></select>')
+      $(".hidden-div").before('<select class="session session-' + clicks + '"   name="session"><option name="no-extra-session" value="" selected>-</option><option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)">Miniature Worlds (7/10-7/14)</option><option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option><option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option><option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option></select>')
     }
   });
 
@@ -100,10 +114,6 @@ $(function() {
 
     $(".step-2").toggleClass("active");
     $(".step-3").toggleClass("active");
-
-    // $('.session').each(function(index) {
-    //   arrayOfChildSessions[index] = $(this).val();
-    // });
 
     var childFirstName = $("input[name=child-first-name]").val();
     var childLastName = $("input[name=child-last-name]").val();
@@ -114,17 +124,26 @@ $(function() {
     newChildInfo.pushToSessionNames();
 
     console.log(newChildInfo);
+    console.log(newChildInfo.sessionNames);
 
-    // arrayOfChildSessions.push(newChildSession);
+    $(".target-row").empty();
 
+    for (i = 0; i < newChildInfo.sessionNames.length; i++ ) {
+      $("#target-row0").before("<tr class='target-row'><td>" + newChildInfo.childName + "</td><td>" + newChildInfo.sessionNames[i] + "</td><td>" + newChildInfo.cost + "</td></tr>");
+    }
 
-    $(".session").each(function() {
+    // pop up additional child modal
 
-      $("#confirm-header").after("<tr><td>" + childFirstName + " " + childLastName + "</td>" + "<td>" + sessionName + "</td><td> $300 </td></tr>")
+    $("#additional-child-modal").css("display", "block");
+
+    $("#total-cost").each(function() {
+
+      // $("#confirm-header").after("<tr><td>" + childFirstName + " " + childLastName + "</td>" + "<td>" + sessionName + "</td><td> $300 </td></tr>")
 
     });
 
   });
+
 
   $(".phone").mask("(999) 999-9999");
 
