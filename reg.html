@@ -103,23 +103,11 @@
           <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
           <label for="notes">Notes:</label>
           <input type="text" name="notes">
+          <!-- Child Buttons -->
           <input type="button" class="child-back" name="child-back" value="Back"></input>
+          <input type="button" onclick="childCount()" class="additional-child" name="additional-child" value="Add another child?"></input>
           <input type="button" class="child-continue" name="child-continue" value="Continue"></input>
-        </div>
-
-        <!-- add additional child modal -->
-
-        <div id="additional-child-modal" class="modal">
-
-          <!-- Modal content -->
-          <div class="modal-content">
-            <!-- <span class="close">&times;</span> -->
-            <div class="modal-wrap">
-              <h2>Would you like to register another child?</h2>
-              <button type="button" name="button">Yes</button>
-              <button type="button" name="button">No, one's enough!</button>
-            </div>
-          </div>
+          <!-- End Child Buttons -->
         </div>
 
         <div class="accordion">Step 3 - Review & Confirm</div >
