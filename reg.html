@@ -43,6 +43,7 @@
         </div>
         <div class="accordion">Step 2 - Child Information</div>
         <div class="step-2 panel">
+          <h3>Child 1</h3>
           <label for="child-first-name">Child's First Name:</label>
           <input type="text" name="child-first-name">
           <label for="child-last-name">Child's Last Name:</label>
@@ -103,9 +104,12 @@
           <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
           <label for="notes">Notes:</label>
           <input type="text" name="notes">
+          <div class="additional-child-target">
+
+          </div>
           <!-- Child Buttons -->
           <input type="button" class="child-back" name="child-back" value="Back"></input>
-          <input type="button" onclick="childCount()" class="additional-child" name="additional-child" value="Add another child?"></input>
+          <input type="button" onclick="childCount()" id="additional-child" name="additional-child" value="Add another child?"></input>
           <input type="button" class="child-continue" name="child-continue" value="Continue"></input>
           <!-- End Child Buttons -->
         </div>
