@@ -94,10 +94,45 @@
           <label for="child-phone">Phone:</label>
           <input class="phone" type="text" name="child-phone">
           <select class="session" name="session">
-            <option name="miniature-worlds" value="1" selected>Miniature Worlds (7/10-7/14)</option>
-            <option name="carnival" value="2">Carnival (7/17-7/21)</option>
-            <option name="flight" value="3">Flight (7/24-7/28)</option>
-            <option name="urban-adventure" value="4">Urban Adventure (7/31-8/4)</option>
+          @foreach(var workshop in @Model)
+          {
+            @if(workshop.GetId() == 1 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="miniature-worlds" value="1" selected>Miniature Worlds (7/10-7/14)</option>
+            }
+            else if(workshop.GetId() == 1 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="miniature-worlds" disabled> *FULL* Miniature Worlds (7/10-7/14)</option>
+            }
+            else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="carnival" value="2">Carnival (7/17-7/21)</option>
+            }
+            else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="carnival" disabled>*FULL* Carnival (7/17-7/21)</option>
+            }
+            else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="flight" value="3">Flight (7/24-7/28)</option>
+            }
+            else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="flight" disabled> *FULL* Flight (7/24-7/28)</option>
+            }
+            else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="urban-adventure" value="4">Urban Adventure (7/31-8/4)</option>
+            }
+            else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="urban-adventure" disabled> *FULL* Urban Adventure (7/31-8/4)</option>
+            }
+            else
+            {
+              <option>Error 121 = foreach loop is out of index</option>
+            }
+          }
           </select>
           <button type="button" name="add-a-session" id="add-a-session">+</button>
           <label for="notes">Notes:</label>

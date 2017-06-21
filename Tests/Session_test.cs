@@ -7,38 +7,38 @@ using System.Data.SqlClient;
 namespace Tinker
 {
   [Collection("Tinker")]
-  public class TestTest : IDisposable
+  public class WorkshopTest : IDisposable
   {
-    public TestTest()
+    public WorkshopTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=tinker_test;Integrated Security=SSPI;";
     }
     [Fact]
-    public void FindTest_FindsTestInDataBase_True()
+    public void FindWorkshop_FindsWorkshopInDataBase_True()
     {
-      Test newTest = new Test("Miniature World");
-      newTest.Save();
+      Workshop newWorkshop = new Workshop("Miniature World");
+      newWorkshop.Save();
 
-      Test testTest = Test.Find(newTest.GetId());
+      Workshop testWorkshop = Workshop.Find(newWorkshop.GetId());
 
-      Assert.Equal("Miniature World", testTest.GetName());
+      Assert.Equal("Miniature World", testWorkshop.GetName());
     }
 
     [Fact]
-    public void AddTest_AddChildToTests_True()
+    public void AddWorkshop_AddChildToWorkshops_True()
     {
       Child newChild = new Child("Hunter", "Parks", 8, 5, "male" , "native american",  "thisisanaddress", "city", "State",  12345, "12345");
       newChild.Save();
 
-      Test findTest = new Test("Miniature World", 1);
-      findTest.Save();
+      Workshop findWorkshop = new Workshop("Miniature World", 1);
+      findWorkshop.Save();
 
-      Test testTest = Test.Find(findTest.GetId());
-      Console.WriteLine(testTest.GetName());
+      Workshop testWorkshop = Workshop.Find(findWorkshop.GetId());
+      Console.WriteLine(testWorkshop.GetName());
 
-      testTest.AddChild(newChild);
+      testWorkshop.AddChild(newChild);
 
-      List<Child> allChildrenEnrolled = testTest.ListEnrolled();
+      List<Child> allChildrenEnrolled = testWorkshop.ListEnrolled();
       List<Child> controlChildren = new List<Child>{newChild};
 
       Assert.Equal(controlChildren[0].GetFirstName(), allChildrenEnrolled[0].GetFirstName());
@@ -46,7 +46,7 @@ namespace Tinker
 
     public void Dispose()
     {
-      Test.DeleteAll();
+      Workshop.DeleteAll();
     }
   }
 

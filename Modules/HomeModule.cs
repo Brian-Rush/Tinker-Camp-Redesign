@@ -14,7 +14,8 @@ namespace Tinker
       };
 
       Get["/register"] = _ => {
-        return View["reg.cshtml"];
+        List<Workshop> allWorkshops = Workshop.GetAll();
+        return View["reg.cshtml", allWorkshops];
       };
 
       Post["/"] = _ => {
@@ -50,11 +51,41 @@ namespace Tinker
 
         int number = 0;
         int.TryParse(Request.Form["session"], out number);
-        Test controlSession = Test.Find(number);
+        Workshop controlSession = Workshop.Find(number);
         controlSession.AddChild(newChild);
 
         return View["index.cshtml"];
       };
+      // Get["/about"] = _ => {
+      //
+      // };
+      // Get["/about/staff"]= _ => {
+      //
+      // };
+      // Get["/camps"] = _ => {
+      //
+      // };
+      // Get["/camps/about"]= _ => {
+      //
+      // };
+      // Get["/camps/summer/2017"] = _ => {
+      //
+      // };
+      // Get["/camps/FAQ"] = _ => {
+      //
+      // };
+      // Get["/other_events"] = _ => {
+      //
+      // };
+      // Get["/for_educators"] = _ => {
+      //
+      // };
+      // Get["/for_educators/what_we_offer"] = _ => {
+      //
+      // };
+      // Get["/for_educators/resources"] = _ => {
+      //
+      // };
     }
   }
 }
