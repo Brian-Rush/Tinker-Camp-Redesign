@@ -86,6 +86,9 @@ namespace Tinker
       // Get["/for_educators/resources"] = _ => {
       //
       // };
+      Get["/donate"] = _ => {
+        return View["donate.cshtml"];
+      };
     }
   }
 }
