@@ -38,12 +38,13 @@
           <input class="phone" type="text" name="guardian-phone">
           <label for="guardian-email">Email:</label>
           <input type="email" name="guardian-email">
-          <label for="purchase-code">Purchase Code:</label>
-          <input type="text" name="purchase-code">
+          <!-- <label for="purchase-code">Purchase Code:</label>
+          <input type="text" name="purchase-code"> -->
           <input type="button" class="parent-continue" value="Continue"></input>
         </div>
         <div class="accordion">Step 2 - Child Information</div>
         <div class="step-2 panel">
+          <h3>Child 1</h3>
           <label for="child-first-name">Child's First Name:</label>
           <input type="text" name="child-first-name">
           <label for="child-last-name">Child's Last Name:</label>
@@ -139,9 +140,16 @@
           <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
           <label for="notes">Notes:</label>
           <input type="text" name="notes">
+          <div class="additional-child-target">
+
+          </div>
+          <!-- Child Buttons -->
           <input type="button" class="child-back" name="child-back" value="Back"></input>
+          <input type="button" onclick="childCount()" id="additional-child" name="additional-child" value="Add another child?"></input>
           <input type="button" class="child-continue" name="child-continue" value="Continue"></input>
+          <!-- End Child Buttons -->
         </div>
+
         <div class="accordion">Step 3 - Review & Confirm</div >
         <div class="step-3 panel">
           <table>
@@ -207,13 +215,13 @@
               <td id="guardian-email">
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>
                 Purchase Code:
               </td>
               <td id="purchase-code">
               </td>
-            </tr>
+            </tr> -->
           </table>
           <input type="button" class="edit-parent" name="edit-parent" value="Edit Parent Information"></input>
           <table>
@@ -222,25 +230,20 @@
                 Child Information
               </th>
             </tr>
-            <tr id="confirm-header">
-              <th>
-                Name
-              </th>
-              <th>
-                Session
-              </th>
-              <th>
-                Cost
-              </th>
-            </tr>
             <tr>
+              <th>Name</th>
+              <th>Session</th>
+              <th>Cost</th>
+            </tr>
+            <tr id="target-row0"></tr>
+            <!-- <tr>
               <td>
                 Total:
               </td>
               <td id="total-cost">
 
               </td>
-            </tr>
+            </tr> -->
           </table>
           <input type="button" class="edit-child" name="edit-child" value="Edit Child Information"></input>
           <input type="submit" name="register">Confirm & Submit</input>
