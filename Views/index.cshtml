@@ -46,7 +46,9 @@
     <p> <!-- Blurb about tinker camp -->
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
-    <button type="button">Register Today</button>
+    <form action="/register">
+      <button type="submit">Register Today</button>
+    </form>
     <main>
       <section class="camps">
         <h2>Camps</h2>
@@ -63,7 +65,9 @@
             <li>Spots left</li>
             <li>Days left</li>
           </ul>
-          <button type="button">Register</button>
+          <form action="/register">
+            <button type="submit">Register</button>
+          </form>
         </div>
       </section>
       <section class="other">
@@ -81,7 +85,9 @@
             <li>Spots left</li>
             <li>Days left</li>
           </ul>
-          <button type="button">Register</button>
+          <form action="/register">
+            <button type="submit">Register Today</button>
+          </form>
         </div>
       </section>
       <section class="educators">
@@ -103,9 +109,14 @@
       </section>
     </main>
     <footer>
-      <button type="button">Register Today</button>
-      <button type="button">Contact Us</button>
-      <button type="button">Join the List</button>
+      <form action="/register">
+        <button type="submit">Register Today</button>
+      </form>
+      @* the routes below are still unknown as pages hasn't been made yet *@
+      <form action="/unknown">
+        <button type="submit">Contact Us</button>
+      </form>
+      <button type="submit">Join the List</button>
       <div class="social">
         <i>facebook</i>
         <i>twitter</i>
