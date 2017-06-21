@@ -4,12 +4,12 @@ using System.Data.SqlClient;
 
 namespace Tinker
 {
-  public class Session
+  public class Test
   {
     private int _id;
     private string _name;
 
-    public Session(string name, int id = 0)
+    public Test(string name, int id = 0)
     {
       _id = id;
       _name = name;
@@ -52,7 +52,7 @@ namespace Tinker
       }
     }
 
-    public static Session Find(int findId)
+    public static Test Find(int findId)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -61,29 +61,28 @@ namespace Tinker
       SqlParameter idParam = new SqlParameter("@id", findId);
       cmd.Parameters.Add(idParam);
 
+      SqlDataReader rdr = cmd.ExecuteReader();
 
       int id = 0;
       string name = null;
 
-      SqlDataReader rdr = cmd.ExecuteReader();
       while(rdr.Read())
       {
         id = rdr.GetInt32(0);
         name = rdr.GetString(1);
       }
 
-      Session newSession = new Session(name, id);
+      Test newTest = new Test(name, id);
 
-      if(conn != null)
-      {
-        conn.Close();
-
-      }
       if(rdr != null)
       {
         rdr.Close();
       }
-      return newSession;
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return newTest;
     }
 
     public void AddChild(Child newChild)

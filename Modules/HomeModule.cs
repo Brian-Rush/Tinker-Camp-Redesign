@@ -50,9 +50,8 @@ namespace Tinker
 
         int number = 0;
         int.TryParse(Request.Form["session"], out number);
-        Session controlSession = Session.Find(number);
-        // Session findSession = Session.Find(session);
-        // findSession.AddChild(newChild);
+        Test controlSession = Test.Find(number);
+        controlSession.AddChild(newChild);
 
         return View["index.cshtml"];
       };
