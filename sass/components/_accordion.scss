@@ -1,0 +1,20 @@
+.step-1 {
+  display: block;
+  &.inactive {
+    display: none;
+  }
+}
+
+.step-2 {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+.step-3 {
+  display: none;
+  &.active {
+    display: block;
+  }
+}

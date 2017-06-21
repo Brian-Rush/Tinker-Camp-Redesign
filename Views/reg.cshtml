@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8"> -->
+    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
     <script src="https://use.fontawesome.com/e44e56f879.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
     <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
-    <script src="js/jquery.validate.js" type="text/javascript"></script>
+    <!-- <script src="js/jquery.validate.js" type="text/javascript"></script> -->
     <script type="text/javascript" src="js/scripts.js"></script>
     <title>Tinker Camp</title>
   </head>
@@ -18,31 +18,38 @@
       </div>
     </header>
     <main>
+<<<<<<< HEAD:reg.html
+      <form name="reg-form" class="reg-form" action="index.html" method="post">
+        <div class="accordion">Step 1 - Guardian Information</div>
+        <div class="step-1 panel">
+=======
       <form name="reg-form" class="reg-form" action="/" method="post">
         <button class="accordion">Step 1 - Guardian Information</button>
         <div class="step-1">
+>>>>>>> 38a77165d2e08d1d93399352a300ba806341a9ad:Views/reg.cshtml
           <label for="guardian-first-name">Guardian First Name:</label>
-          <input type="text" name="guardianFirstName" required />
+          <input type="text" name="guardianFirstName"/>
           <label for="guardian-last-name">Guardian Last Name:</label>
-          <input type="text" name="guardian-last-name" required />
+          <input type="text" name="guardian-last-name" />
           <label for="guardian-street-address">Street Address:</label>
-          <input type="text" name="guardian-street-address" required>
+          <input type="text" name="guardian-street-address">
           <label for="guardian-city">City:</label>
-          <input type="text" name="guardian-city" required>
+          <input type="text" name="guardian-city">
           <label for="guardian-state">State:</label>
-          <input type="text" name="guardian-state" required>
+          <input type="text" name="guardian-state">
           <label for="guardian-zip">Zip:</label>
-          <input type="text" name="guardian-zip" required>
+          <input type="text" name="guardian-zip">
           <label for="guardian-phone">Phone:</label>
-          <input class="phone" type="text" name="guardian-phone" required>
+          <input class="phone" type="text" name="guardian-phone">
           <label for="guardian-email">Email:</label>
-          <input type="email" name="guardian-email" required>
-          <label for="purchase-code">Purchase Code:</label>
-          <input type="text" name="purchase-code">
-          <button type="button" name="button" class="parent-continue">Continue</button>
+          <input type="email" name="guardian-email">
+          <!-- <label for="purchase-code">Purchase Code:</label>
+          <input type="text" name="purchase-code"> -->
+          <input type="button" class="parent-continue" value="Continue"></input>
         </div>
-        <button class="accordion">Step 2 - Child Information</button>
-        <div class="step-2">
+        <div class="accordion">Step 2 - Child Information</div>
+        <div class="step-2 panel">
+          <h3>Child 1</h3>
           <label for="child-first-name">Child's First Name:</label>
           <input type="text" name="child-first-name">
           <label for="child-last-name">Child's Last Name:</label>
@@ -93,124 +100,139 @@
           <input type="text" name="child-zip">
           <label for="child-phone">Phone:</label>
           <input class="phone" type="text" name="child-phone">
+<<<<<<< HEAD:reg.html
+          <select class="session session-0" name="session">
+            <option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)" selected>Miniature Worlds (7/10-7/14)</option>
+            <option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option>
+            <option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option>
+            <option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option>
+=======
           <select class="session" name="session">
             <option name="miniature-worlds" value="1" selected>Miniature Worlds (7/10-7/14)</option>
             <option name="carnival" value="2">Carnival (7/17-7/21)</option>
             <option name="flight" value="3">Flight (7/24-7/28)</option>
             <option name="urban-adventure" value="4">Urban Adventure (7/31-8/4)</option>
+>>>>>>> 38a77165d2e08d1d93399352a300ba806341a9ad:Views/reg.cshtml
           </select>
-          <button type="button" name="add-a-session" id="add-a-session">+</button>
+          <div class="hidden-div"></div>
+          <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
           <label for="notes">Notes:</label>
           <input type="text" name="notes">
-          <button class="child-continue" type="button" name="child-continue">Continue</button>
+          <div class="additional-child-target">
+
+          </div>
+          <!-- Child Buttons -->
+          <input type="button" class="child-back" name="child-back" value="Back"></input>
+          <input type="button" onclick="childCount()" id="additional-child" name="additional-child" value="Add another child?"></input>
+          <input type="button" class="child-continue" name="child-continue" value="Continue"></input>
+          <!-- End Child Buttons -->
         </div>
-        <button class="accordion">Step 3 - Review & Confirm</button>
-        <table>
-          <tr>
-            <td>
-              Guardian Information
-            </td>
-          </tr>
-          <tr>
-            <td>
-              First Name:
-            </td>
-            <td id="guardian-first-name">
 
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Last Name:
-            </td>
-            <td id="guardian-last-name">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Street Address:
-            </td>
-            <td id="guardian-street-address">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              City:
-            </td>
-            <td id="guardian-city">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              State:
-            </td>
-            <td id="guardian-state">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Zip:
-            </td>
-            <td id="guardian-zip">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Phone:
-            </td>
-            <td id="guardian-phone">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Email:
-            </td>
-            <td id="guardian-email">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Purchase Code:
-            </td>
-            <td id="purchase-code">
-            </td>
-          </tr>
-        </table>
-        <button id="edit-parent" name="edit-parent">Edit Parent Information</button>
-        <table>
-          <tr>
-            <th>
-              Child Information
-            </th>
-          </tr>
-          <tr id="confirm-header">
-            <th>
-              Name
-            </th>
-            <th>
-              Session
-            </th>
-            <th>
-              Cost
-            </th>
-          </tr>
-          <tr>
-            <td>
-              Total:
-            </td>
-            <td id="total-cost">
+        <div class="accordion">Step 3 - Review & Confirm</div >
+        <div class="step-3 panel">
+          <table>
+            <tr>
+              <td>
+                Guardian Information
+              </td>
+            </tr>
+            <tr>
+              <td>
+                First Name:
+              </td>
+              <td id="guardian-first-name">
 
-            </td>
-          </tr>
-        </table>
-        <button id="edit-parent" name="edit-parent">Edit Child Information</button>
-        <button type="submit" name="register">Confirm & Submit</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Last Name:
+              </td>
+              <td id="guardian-last-name">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Street Address:
+              </td>
+              <td id="guardian-street-address">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                City:
+              </td>
+              <td id="guardian-city">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                State:
+              </td>
+              <td id="guardian-state">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Zip:
+              </td>
+              <td id="guardian-zip">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Phone:
+              </td>
+              <td id="guardian-phone">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Email:
+              </td>
+              <td id="guardian-email">
+              </td>
+            </tr>
+            <!-- <tr>
+              <td>
+                Purchase Code:
+              </td>
+              <td id="purchase-code">
+              </td>
+            </tr> -->
+          </table>
+          <input type="button" class="edit-parent" name="edit-parent" value="Edit Parent Information"></input>
+          <table>
+            <tr>
+              <th>
+                Child Information
+              </th>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <th>Session</th>
+              <th>Cost</th>
+            </tr>
+            <tr id="target-row0"></tr>
+            <!-- <tr>
+              <td>
+                Total:
+              </td>
+              <td id="total-cost">
+
+              </td>
+            </tr> -->
+          </table>
+          <input type="button" class="edit-child" name="edit-child" value="Edit Child Information"></input>
+          <input type="submit" name="register">Confirm & Submit</input>
+        </div>
       </form>
+
     </main>
     <footer>
-      <button type="button">Register Today</button>
-      <button type="button">Contact Us</button>
-      <button type="button">Join the List</button>
+      <input type="button" type="input type="button"">Register Today</input>
+      <input type="button" type="input type="button"">Contact Us</input>
+      <input type="button" type="input type="button"">Join the List</input>
       <div class="social">
         <i>facebook</i>
         <i>twitter</i>
