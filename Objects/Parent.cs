@@ -300,6 +300,28 @@ namespace Tinker
       }
     }
 
+    public void AddChildToParent(Child newChild)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Child (parent_id, child_id) VALUES (@parent_id, @session_id); ", conn);
+
+      SqlParameter childParameter = new SqlParameter("@child_id", newChild.GetId());
+      cmd.Parameters.Add(childParameter);
+
+      SqlParameter sessionParameter = new SqlParameter("@session_id", this.GetId());
+      cmd.Parameters.Add(sessionParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

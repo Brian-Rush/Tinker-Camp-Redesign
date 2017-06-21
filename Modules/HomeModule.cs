@@ -19,18 +19,21 @@ namespace Tinker
       };
 
       Post["/"] = _ => {
-        var firstName = Request.Form["guardian-first-name"];
-        var secondName = Request.Form["guardian-last-name"];
-        var address = Request.Form["guardian-street-address"];
-        var city = Request.Form["guardian-city"];
-        var state = Request.Form["guardian-state"];
-        int zip = 0;
-        int.TryParse(Request.Form["guardian-zip"], out zip);
-        var phone = Request.Form["guardian-phone"];
-        var email = Request.Form["guardian-email"];
-        var code = Request.Form["purchase-code"];
-        Parent newParent = new Parent(firstName, secondName, address, city, state, zip, phone, email, code);
-        newParent.Save();
+        @if(!(Parent.CheckForLastName(Request.Form["guardian-last-name"]))
+        {
+          var firstName = Request.Form["guardian-first-name"];
+          var secondName = Request.Form["guardian-last-name"];
+          var address = Request.Form["guardian-street-address"];
+          var city = Request.Form["guardian-city"];
+          var state = Request.Form["guardian-state"];
+          int zip = 0;
+          int.TryParse(Request.Form["guardian-zip"], out zip);
+          var phone = Request.Form["guardian-phone"];
+          var email = Request.Form["guardian-email"];
+          var code = Request.Form["purchase-code"];
+          Parent newParent = new Parent(firstName, secondName, address, city, state, zip, phone, email, code);
+          newParent.Save();
+        }
 
         var childFirstName = Request.Form["child-first-name"];
         var childLastName = Request.Form["child-last-name"];
@@ -48,6 +51,8 @@ namespace Tinker
         var childPhone = Request.Form["child-phone"];
         Child newChild = new Child(childFirstName, childLastName, childAge, childGrade, childGender, childRace, childStreetAddress, childCity, childState, childZip, childPhone);
         newChild.Save();
+
+        newParent.AddChildToParent(newChild);
 
         int number = 0;
         int.TryParse(Request.Form["session"], out number);
