@@ -437,8 +437,11 @@ template {
   display: block;
 }
 
-header .logo img:nth-child(2) {
+header .logo img:nth-child(1) {
   display: none;
+}
+header .logo img:nth-child(2) {
+  width: 70vw;
 }
 header .head-bar {
   display: flex;
@@ -518,6 +521,7 @@ header #mobile-nav {
   width: 100vw;
   height: 0;
   overflow: hidden;
+  position: absolute;
   -webkit-transition: height, 0.3s linear;
   -moz-transition: height, 0.3s linear;
   -ms-transition: height, 0.3s linear;
