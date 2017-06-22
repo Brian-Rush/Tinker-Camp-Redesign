@@ -229,6 +229,56 @@ namespace Tinker
       return newParent;
     }
 
+    public static Parent CheckForLastName(int findId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE last-name = @LastName", conn);
+      SqlParameter idParam = new SqlParameter("@LastName", findId);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int id = 0;
+      string firstName = null;
+      string lastName = null;
+      string address = null;
+      string city = null;
+      string state = null;
+      int zip = 0;
+      string phone = null;
+      string email = null;
+      string code = null;
+
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        address = rdr.GetString(3);
+        city = rdr.GetString(4);
+        state = rdr.GetString(5);
+        zip = rdr.GetInt32(6);
+        phone = rdr.GetString(7);
+        email = rdr.GetString(8);
+        code = rdr.GetString(9);
+      }
+
+      Parent newParent = new Parent(firstName, lastName, address, city, state, zip, phone, email, code, id);
+
+      if(conn != null)
+      {
+        conn.Close();
+
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      return newParent;
+    }
+
     // PLEASE READ BEFORE USING UPDATE!!!!!!!!!!!!!!!!!!!
     //
     //  ORIGINAL VARIABLE !!!WILL NOT CHANGE!!!! YOU WILL NEED
@@ -299,6 +349,28 @@ namespace Tinker
         conn.Close();
       }
     }
+
+    public void AddChildToParent(Child newChild)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Child (parent_id, child_id) VALUES (@parent_id, @session_id); ", conn);
+
+      SqlParameter childParameter = new SqlParameter("@parent_id", newChild.GetId());
+      cmd.Parameters.Add(childParameter);
+
+      SqlParameter sessionParameter = new SqlParameter("@session_id", this.GetId());
+      cmd.Parameters.Add(sessionParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
 
     public static void DeleteAll()
     {

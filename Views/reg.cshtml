@@ -8,7 +8,7 @@
     crossorigin="anonymous"></script>
     <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
     <!-- <script src="js/jquery.validate.js" type="text/javascript"></script> -->
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="../Content/js/scripts.js"></script>
     <title>Tinker Camp</title>
   </head>
   <body>
@@ -94,11 +94,48 @@
           <input type="text" name="child-zip">
           <label for="child-phone">Phone:</label>
           <input class="phone" type="text" name="child-phone">
-          <select class="session session-0" name="session">
-            <option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)" selected>Miniature Worlds (7/10-7/14)</option>
-            <option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option>
-            <option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option>
-            <option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option>
+          <label for="child-code">Code</label>
+          <input class="code" type="text" name="purchase-code">
+          <select class="session" name="session">
+          @foreach(var workshop in @Model)
+          {
+            @if(workshop.GetId() == 1 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="miniature-worlds" value="1" selected>Miniature Worlds (7/10-7/14)</option>
+            }
+            else if(workshop.GetId() == 1 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="miniature-worlds" disabled> *FULL* Miniature Worlds (7/10-7/14)</option>
+            }
+            else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="carnival" value="2">Carnival (7/17-7/21)</option>
+            }
+            else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="carnival" disabled>*FULL* Carnival (7/17-7/21)</option>
+            }
+            else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="flight" value="3">Flight (7/24-7/28)</option>
+            }
+            else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="flight" disabled> *FULL* Flight (7/24-7/28)</option>
+            }
+            else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count < 20)
+            {
+              <option name="urban-adventure" value="4">Urban Adventure (7/31-8/4)</option>
+            }
+            else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count >= 20)
+            {
+              <option name="urban-adventure" disabled> *FULL* Urban Adventure (7/31-8/4)</option>
+            }
+            else
+            {
+              <option>Error 121 = foreach loop is out of index</option>
+            }
+          }
           </select>
           <div class="hidden-div"></div>
           <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
