@@ -83,13 +83,13 @@ namespace Tinker
       }
     }
 
-    public static Workshop Find(int findId)
+    public static Workshop Find(string findName)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM Session_Object WHERE id = @id", conn);
-      SqlParameter idParam = new SqlParameter("@id", findId);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Session_Object WHERE name = @name", conn);
+      SqlParameter idParam = new SqlParameter("@name", findName);
       cmd.Parameters.Add(idParam);
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -155,14 +155,14 @@ namespace Tinker
         int id = rdr.GetInt32(0);
         string first = rdr.GetString(1);
         string last = rdr.GetString(2);
-        int age = rdr.GetInt32(3);
-        int grade = rdr.GetInt32(4);
+        string age = rdr.GetString(3);
+        string grade = rdr.GetString(4);
         string gender = rdr.GetString(5);
         string race = rdr.GetString(6);
         string address = rdr.GetString(7);
         string city = rdr.GetString(8);
         string state = rdr.GetString(9);
-        int zip = rdr.GetInt32(10);
+        string zip = rdr.GetString(10);
         string phone = rdr.GetString(11);
         Child newChild = new Child(first, last, age, grade, gender, race, address, city, state, zip, phone, id);
         allChildren.Add(newChild);

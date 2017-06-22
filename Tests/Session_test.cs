@@ -19,7 +19,7 @@ namespace Tinker
       Workshop newWorkshop = new Workshop("Miniature World");
       newWorkshop.Save();
 
-      Workshop testWorkshop = Workshop.Find(newWorkshop.GetId());
+      Workshop testWorkshop = Workshop.Find(newWorkshop.GetName());
 
       Assert.Equal("Miniature World", testWorkshop.GetName());
     }
@@ -27,13 +27,13 @@ namespace Tinker
     [Fact]
     public void AddWorkshop_AddChildToWorkshops_True()
     {
-      Child newChild = new Child("Hunter", "Parks", 8, 5, "male" , "native american",  "thisisanaddress", "city", "State",  12345, "12345");
+      Child newChild = new Child("Hunter", "Parks", "8", "5", "male" , "native american",  "thisisanaddress", "city", "State",  "12345", "12345");
       newChild.Save();
 
       Workshop findWorkshop = new Workshop("Miniature World", 1);
       findWorkshop.Save();
 
-      Workshop testWorkshop = Workshop.Find(findWorkshop.GetId());
+      Workshop testWorkshop = Workshop.Find(findWorkshop.GetName());
       Console.WriteLine(testWorkshop.GetName());
 
       testWorkshop.AddChild(newChild);

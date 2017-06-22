@@ -18,7 +18,7 @@
       </div>
     </header>
     <main>
-      <form name="reg-form" class="reg-form" action="index.html" method="post">
+      <form name="reg-form" class="reg-form" action="/" method="post">
         <div class="accordion">Step 1 - Guardian Information</div>
         <div class="step-1 panel">
           <label for="guardian-first-name">Guardian First Name:</label>
@@ -101,7 +101,7 @@
           {
             @if(workshop.GetId() == 1 && workshop.ListEnrolled().Count < 20)
             {
-              <option name="miniature-worlds" value="1" selected>Miniature Worlds (7/10-7/14)</option>
+              <option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)" selected>Miniature Worlds (7/10-7/14)</option>
             }
             else if(workshop.GetId() == 1 && workshop.ListEnrolled().Count >= 20)
             {
@@ -109,7 +109,7 @@
             }
             else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count < 20)
             {
-              <option name="carnival" value="2">Carnival (7/17-7/21)</option>
+              <option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option>
             }
             else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count >= 20)
             {
@@ -117,7 +117,7 @@
             }
             else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count < 20)
             {
-              <option name="flight" value="3">Flight (7/24-7/28)</option>
+              <option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option>
             }
             else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count >= 20)
             {
@@ -125,7 +125,7 @@
             }
             else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count < 20)
             {
-              <option name="urban-adventure" value="4">Urban Adventure (7/31-8/4)</option>
+              <option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option>
             }
             else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count >= 20)
             {

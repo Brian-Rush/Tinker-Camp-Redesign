@@ -19,47 +19,45 @@ namespace Tinker
       };
 
       Post["/"] = _ => {
-        // @if(!(Parent.CheckForLastName(Request.Form["guardian-last-name"]))
-        // {
+        Parent testParent = null;
+        if(Parent.GetParent(Request.Form["guardian-last-name"]) == null)
+        {
           var firstName = Request.Form["guardian-first-name"];
           var secondName = Request.Form["guardian-last-name"];
           var address = Request.Form["guardian-street-address"];
           var city = Request.Form["guardian-city"];
           var state = Request.Form["guardian-state"];
-          int zip = 0;
-          int.TryParse(Request.Form["guardian-zip"], out zip);
+
+          var zip = (Request.Form["guardian-zip"]);
           var phone = Request.Form["guardian-phone"];
           var email = Request.Form["guardian-email"];
           var code = Request.Form["purchase-code"];
-          Parent newParent = new Parent(firstName, secondName, address, city, state, zip, phone, email, code);
-          newParent.Save();
-        // }
-        // else
-        // {
-        //
-        // }
+          testParent = new Parent(firstName, secondName, address, city, state, zip, phone, email, code);
+          testParent.Save();
+        }
+        else
+        {
+          testParent = Parent.GetParent(Request.Form["guardian-last-name"]);
+        }
 
         var childFirstName = Request.Form["child-first-name"];
         var childLastName = Request.Form["child-last-name"];
-        int childAge = 0;
-        int.TryParse(Request.Form["child-age"], out childAge);
-        int childGrade = 0;
-        int.TryParse(Request.Form["child-grade"], out childGrade);
+        var childAge = (Request.Form["child-age"]);
+        var childGrade = (Request.Form["child-grade"]);
         var childGender = Request.Form["child-gender-pronoun"];
         var childRace = Request.Form["child-race"];
         var childStreetAddress = Request.Form["child-street-address"];
         var childCity = Request.Form["child-city"];
         var childState = Request.Form["child-state"];
-        int childZip = 0;
-        int.TryParse(Request.Form["child-zip"], out childZip);
+        var childZip = (Request.Form["child-zip"]);
         var childPhone = Request.Form["child-phone"];
         Child newChild = new Child(childFirstName, childLastName, childAge, childGrade, childGender, childRace, childStreetAddress, childCity, childState, childZip, childPhone);
         newChild.Save();
 
-        newParent.AddChildToParent(newChild);
+        testParent.AddChildToParent(newChild);
 
-        int number = Request.Form["session"];
-        Workshop controlSession = Workshop.Find(number);
+        string name = Request.Form["session"];
+        Workshop controlSession = Workshop.Find(name);
         controlSession.AddChild(newChild);
 
         return View["index.cshtml"];

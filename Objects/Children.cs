@@ -9,17 +9,17 @@ namespace Tinker
     private int _id;
     private string _firstName;
     private string _lastName;
-    private int _age;
-    private int _grade;
+    private string _age;
+    private string _grade;
     private string _gender;
     private string _race;
     private string _address;
     private string _city;
     private string _state;
-    private int _zip;
+    private string _zip;
     private string _phone;
 
-    public Child(string firstName, string lastName, int age, int grade, string genderPronoun, string race, string address, string city, string state, int zip, string phone, int id = 0)
+    public Child(string firstName, string lastName, string age, string grade, string genderPronoun, string race, string address, string city, string state, string zip, string phone, int id = 0)
     {
       _id = id;
       _firstName = firstName;
@@ -59,7 +59,7 @@ namespace Tinker
     {
       return _state;
     }
-    public int GetZip()
+    public string GetZip()
     {
       return _zip;
     }
@@ -75,11 +75,11 @@ namespace Tinker
     {
       return _race;
     }
-    public int GetAge()
+    public string GetAge()
     {
       return _age;
     }
-    public int GetGrade()
+    public string GetGrade()
     {
       return _grade;
     }
@@ -100,14 +100,14 @@ namespace Tinker
         int id = rdr.GetInt32(0);
         string first = rdr.GetString(1);
         string last = rdr.GetString(2);
-        int age = rdr.GetInt32(3);
-        int grade = rdr.GetInt32(4);
+        string age = rdr.GetString(3);
+        string grade = rdr.GetString(4);
         string gender = rdr.GetString(5);
         string race = rdr.GetString(6);
         string address = rdr.GetString(7);
         string city = rdr.GetString(8);
         string state = rdr.GetString(9);
-        int zip = rdr.GetInt32(10);
+        string zip = rdr.GetString(10);
         string phone = rdr.GetString(11);
         Child newChild = new Child(first, last, age, grade, gender, race, address, city, state, zip, phone, id);
         allChild.Add(newChild);
@@ -187,7 +187,7 @@ namespace Tinker
     //  TO PULL THE ORIGINAL CHILD INFORMATION BACK OUT OF
     //  THE DATABASE IN ORDER TO UPDATE CURRENT INFORMATION
     //
-    public void Update(string FirstName, string LastName, int Age, int Grade, string Gender, string Race, string Address, string City, string State, int Zip, string Phone)
+    public void Update(string FirstName, string LastName, string Age, string Grade, string Gender, string Race, string Address, string City, string State, string Zip, string Phone)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
@@ -237,14 +237,14 @@ namespace Tinker
         this._id = rdr.GetInt32(0);
         this._firstName = rdr.GetString(1);
         this._lastName = rdr.GetString(2);
-        this._age = rdr.GetInt32(3);
-        this._grade = rdr.GetInt32(4);
+        this._age = rdr.GetString(3);
+        this._grade = rdr.GetString(4);
         this._gender = rdr.GetString(5);
         this._race = rdr.GetString(6);
         this._address = rdr.GetString(7);
         this._city = rdr.GetString(8);
         this._state = rdr.GetString(9);
-        this._zip = rdr.GetInt32(10);
+        this._zip = rdr.GetString(10);
         this._phone = rdr.GetString(11);
       }
 
@@ -273,14 +273,14 @@ namespace Tinker
       int id = 0;
       string firstName = null;
       string lastName = null;
-      int age = 0;
-      int grade = 0;
+      string age = null;
+      string grade = null;
       string gender = null;
       string race = null;
       string address = null;
       string city = null;
       string state = null;
-      int zip = 0;
+      string zip = null;
       string phone = null;
 
       while(rdr.Read())
@@ -288,14 +288,14 @@ namespace Tinker
         id = rdr.GetInt32(0);
         firstName = rdr.GetString(1);
         lastName = rdr.GetString(2);
-        age = rdr.GetInt32(3);
-        grade = rdr.GetInt32(4);
+        age = rdr.GetString(3);
+        grade = rdr.GetString(4);
         gender = rdr.GetString(5);
         race = rdr.GetString(6);
         address = rdr.GetString(7);
         city = rdr.GetString(8);
         state = rdr.GetString(9);
-        zip = rdr.GetInt32(10);
+        zip = rdr.GetString(10);
         phone = rdr.GetString(11);
       }
 
