@@ -1,3 +1,7 @@
+*:focus, *:active {
+  outline: 0;
+}
+
 /*! normalize.css v6.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -410,8 +414,18 @@ template {
   display: none;
 }
 
-.tinker-blurb form button {
+* {
+  font-family: "Lora", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Istok Web", sans-serif;
+}
+
+main .w3-bar button {
   text-transform: uppercase;
+  font-family: "Istok Web", sans-serif;
+  font-size: 0.8em;
 }
 
 * {
@@ -441,6 +455,9 @@ template {
   display: block;
 }
 
+header .logo {
+  padding: 10px;
+}
 header .logo img:nth-child(1) {
   display: none;
 }
@@ -587,7 +604,6 @@ header #mobile-nav.open {
 }
 
 .hero-img {
-  height: 300px;
   overflow: hidden;
 }
 .hero-img img {
@@ -611,6 +627,85 @@ header #mobile-nav.open {
   color: white;
   padding: 1em 2em;
   border: none;
+  font-family: "Istok Web", sans-serif;
+  text-transform: uppercase;
+}
+
+main .w3-bar {
+  display: flex;
+}
+main .w3-bar button {
+  border: none;
+}
+main .w3-bar .tablink {
+  background-color: #dedede;
+}
+main .w3-bar .w3-active {
+  background: linear-gradient(#818AA7, #D5D9E7);
+}
+main .w3-bar .w3-bar-item {
+  flex-grow: 1;
+  padding: 10px 0;
+}
+main .w3-bar .w3-bar-item:nth-child(2) {
+  border-left: 1px solid #151E3E;
+  border-right: 1px solid #151E3E;
+}
+main .tab {
+  background-color: #D5D9E7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+main .tab .session-group {
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+main .tab .session-group ul {
+  list-style: none;
+}
+main .tab .session-group form {
+  position: relative;
+}
+main .tab .session-group form button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #4F5A7F;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  font-family: "Istok Web", sans-serif;
+  text-transform: uppercase;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer button {
+  background: #4F5A7F;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  font-family: "Istok Web", sans-serif;
+  text-transform: uppercase;
+  margin: 5px;
+}
+footer .footer-buttons {
+  display: flex;
+  margin: 5px 0;
+}
+footer .social {
+  margin: 10px 0;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  font-size: 2.5em;
 }
 
 /*# sourceMappingURL=main.css.map */

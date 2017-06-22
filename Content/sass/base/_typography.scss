@@ -1,7 +1,21 @@
-.tinker-blurb {
-  form {
+$title-font: 'Istok Web', sans-serif;
+
+$main-font: 'Lora', serif;
+
+* {
+ font-family: $main-font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $title-font;
+}
+
+main {
+  .w3-bar {
     button {
       text-transform: uppercase;
+      font-family: $title-font;
+      font-size: 0.8em;
     }
   }
 }

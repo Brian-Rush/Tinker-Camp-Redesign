@@ -36,17 +36,68 @@ function childCount() {
 
 // main body tabs for mobile
 
-function switchTab(tabName) {
-    var i;
-    var x = document.getElementsByClassName("tab");
+
+
+// function switchTab(tabname) {
+//   $('.tablink').each(function() {
+//     $(this).toggleClass('w3-active');
+//   });
+//
+//   $('.tab').each(function() {
+//     $(this).css('display', 'none');
+//   });
+//
+//   tabname.css('display', 'block');
+// }
+
+
+function openCity(evt, cityName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("city");
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
-    document.getElementById(tabName).style.display = "block";
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " w3-red";
 }
 
+
+function openCity(evt, cityName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+}
 // Document Ready
 $(function() {
+
+  $('.w3-bar-item').click(function() {
+    $(this).addClass('w3-active');
+    $(this).siblings().removeClass('w3-active');
+
+    if ($(this).hasClass('camps')) {
+      $('#camps').css('display', 'block');
+      $('#other-events, #for-edu').css('display', 'none');
+      // $('.camps').css('border-bottom', 'none');
+      // $('.other-events .for-edu').css('border-bottom', "1px solid black")
+    } else if ($(this).hasClass('other-events')) {
+      $('#other-events').css('display', 'block');
+      $('#camps, #for-edu').css('display', 'none');
+      // $('.other-events').css('border-bottom', 'none');
+      // $('.camps .for-edu').css('border-bottom', "1px solid black")
+    } else if ($(this).hasClass('for-edu')) {
+      $('#for-edu').css('display', 'block');
+      $('#other-events, #camps').css('display', 'none');
+      // $('.for-edu').css('border-bottom', 'none');
+      // $('.other-events .camps').css('border-bottom', "1px solid black")
+
+    }
+  });
 
   // hamburger menu animation
 

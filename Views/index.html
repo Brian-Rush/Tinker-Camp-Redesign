@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web|Lora" rel="stylesheet">
     <link rel="stylesheet" href="../Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <script src="https://use.fontawesome.com/e44e56f879.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -84,84 +85,136 @@
     </div>
     <main>
       <div class="w3-bar w3-black">
-        <button class="w3-bar-item w3-button" onclick="switchTab('camps')">Camps</button>
-        <button class="w3-bar-item w3-button" onclick="switchTab('other-events-tab')">Other Events</button>
-        <button class="w3-bar-item w3-button" onclick="switchTab('edu-tab')">For Educators</button>
+        <button class="w3-bar-item w3-button tablink w3-active camps">Camps</button>
+        <button class="w3-bar-item w3-button tablink other-events">Other Events</button>
+        <button class="w3-bar-item w3-button tablink for-edu">For Educators</button>
       </div>
       <div id="camps" class="tab">
-        <h2>Camps</h2>
-        <h3>Session Title</h3>
-        <p>Session description Session description Session description Session description Session description</p>
-        <ul>
-          <li>Date</li>
-          <li>Time</li>
-          <li>Location</li>
-          <li>Cost</li>
-          <li>Hosts:</li>
-          <li>Spots left</li>
-          <li>Days left</li>
-        </ul>
-        <form action="/register">
-          <button type="submit">Register</button>
-        </form>
+        <div class="session-group">
+          <h3>Miniature Worlds</h3>
+          <p>Session description Session description Session description Session description Session description</p>
+          <ul>
+            <li>Date</li>
+            <li>Time</li>
+            <li>Location</li>
+            <li>Cost</li>
+            <li>Hosts:</li>
+            <li>Spots left</li>
+            <li>Days left</li>
+          </ul>
+          <form action="/register">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div class="session-group">
+          <h3>Carnival</h3>
+          <p>Session description Session description Session description Session description Session description</p>
+          <ul>
+            <li>Date</li>
+            <li>Time</li>
+            <li>Location</li>
+            <li>Cost</li>
+            <li>Hosts:</li>
+            <li>Spots left</li>
+            <li>Days left</li>
+          </ul>
+          <form action="/register">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div class="session-group">
+          <h3>Flight</h3>
+          <p>Session description Session description Session description Session description Session description</p>
+          <ul>
+            <li>Date</li>
+            <li>Time</li>
+            <li>Location</li>
+            <li>Cost</li>
+            <li>Hosts:</li>
+            <li>Spots left</li>
+            <li>Days left</li>
+          </ul>
+          <form action="/register">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div class="session-group">
+          <h3>Urban Adventure</h3>
+          <p>Session description Session description Session description Session description Session description</p>
+          <ul>
+            <li>Date</li>
+            <li>Time</li>
+            <li>Location</li>
+            <li>Cost</li>
+            <li>Hosts:</li>
+            <li>Spots left</li>
+            <li>Days left</li>
+          </ul>
+          <form action="/register">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+      <div id="other-events" class="tab" style="display:none">
+        <div class="session-group">
+          <img src="" alt="" />
+          <h3>Session Title</h3>
+          <p>Session description Session description Session description Session description Session description</p>
+          <ul> <!-- Staff can fill out form to generate this information, what doesn't get information automatically gets hidden -->
+            <li>Date</li>
+            <li>Time</li>
+            <li>Location</li>
+            <li>Cost</li>
+            <li>Hosts:</li>
+            <li>Spots left</li>
+            <li>Days left</li>
+          </ul>
+          <form action="/register">
+            <button type="submit">Register Today</button>
+          </form>
+        </div>
       </div>
 
-      <div id="other-events-tab" class="tab" style="display:none">
-        <h2>Other Events</h2>
-        <img src="" alt="" />
-        <h3>Session Title</h3>
-        <p>Session description Session description Session description Session description Session description</p>
-        <ul> <!-- Staff can fill out form to generate this information, what doesn't get information automatically gets hidden -->
-          <li>Date</li>
-          <li>Time</li>
-          <li>Location</li>
-          <li>Cost</li>
-          <li>Hosts:</li>
-          <li>Spots left</li>
-          <li>Days left</li>
-        </ul>
-        <form action="/register">
-          <button type="submit">Register Today</button>
-        </form>
-      </div>
-
-      <div id="edu-tab" class="tab" style="display:none">
-        <h2>For Educators</h2>
-        <h3>What we offer</h3>
-        <p>
-          Workshops
-        </p>
-        <p>
-          Program design
-        </p>
-        <p>
-          Embedding
-        </p>
-        <h3>Events</h3>
-        <h3>Resources</h3>
+      <div id="for-edu" class="tab" style="display:none">
+        <div class="session-group">
+          <h3>What we offer</h3>
+          <p>
+            Workshops
+          </p>
+          <p>
+            Program design
+          </p>
+          <p>
+            Embedding
+          </p>
+          <h3>Events</h3>
+          <h3>Resources</h3>
+        </div>
       </div>
     </main>
     <footer>
-      <form action="/register">
+      <!-- <form action="/register">
         <button type="submit">Register Today</button>
-      </form>
-      <form action="/donate">
-        <button type="submit">Donate</button>
-      </form>
-      @* the routes below are still unknown as pages hasn't been made yet *@
-      <form action="/unknown">
-        <button type="submit">Contact Us</button>
-      </form>
-      <button type="submit">Join the List</button>
+      </form> -->
+      <div class="footer-buttons">
+        <form action="/donate">
+          <button type="submit">Donate</button>
+        </form>
+        <!-- @* the routes below are still unknown as pages hasn't been made yet *@ -->
+        <form action="/unknown">
+          <button type="submit">Contact Us</button>
+        </form>
+        <button type="submit">Join the List</button>        
+      </div>
       <div class="social">
-        <i><a href="https://www.facebook.com/TinkerCamp/">Facebook</a></i>
-        <i><a href="https://twitter.com/pdxtinkercamp">twitter</a></i>
-        @* <div class="timeline-widget">
+        <i class="fa fa-twitter" aria-hidden="true"><a href="https://twitter.com/pdxtinkercamp"></a></i>
+        <i class="fa fa-facebook" aria-hidden="true"><a href="https://www.facebook.com/TinkerCamp/"></a></i>
+        <!-- @* <div class="timeline-widget">
           <a class="twitter-timeline" href="https://twitter.com/pdxtinkercamp">Tinker Camp Twitter</a> <script async src="//platform.twitter.com/widgets.js:thumb" charset="utf-8"></script>
           <a href="https://twitter.com/PDXTinkerCamp" class="twitter-follow-button" data-show-count="false">Follow PDXTinkerCamp</a>
           <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div> *@
-        <i>instagram</i>
+        </div> *@ -->
+        <i class="fa fa-instagram" aria-hidden="true"><a href="https://instagram.com/pdxtinkercamp"></a></i>
       </div>
     </footer>
   </body>
