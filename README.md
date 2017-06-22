@@ -9,7 +9,6 @@ The video below demonstrates that Tinker Camp uses narrative or story to increas
 
 [![IMAGE ALT TEXT HERE](https://i.ytimg.com/vi/sy8XbKQxsyo/mqdefault.jpg)](https://www.youtube.com/watch?v=sy8XbKQxsyo)
 
-![alt text][picture]
 
 
 ### Specs
@@ -21,6 +20,7 @@ The video below demonstrates that Tinker Camp uses narrative or story to increas
 | Parent can then add a child or multiple children to a specific program  | User enters child's name, age, grade, address(if different), and session the want to attend  | Parent:"Jane Wilcox" Child: "Jimmy Wilcox", age: 7, grade: 6th: session: Miniature World |
 | Parent can then go back and enter their exact info again and register another Child under their unique ID. | User enters basic information about their child | Website will display you have entered the information correctly |
 
+![alt text][picture]
 
 ### Tutorial
 * Clone the repository https://github.com/Brian-Rush/Tinker-Camp-Redesign
