@@ -229,16 +229,14 @@ namespace Tinker
       return newParent;
     }
 
-    public static Parent GetParent(string last, string first)
+    public static Parent GetParent(string last)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE (Last = @LastName, First = @firstName); ", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE Last = @LastName;", conn);
       SqlParameter idParam = new SqlParameter("@LastName", last);
       cmd.Parameters.Add(idParam);
-      SqlParameter firstParam = new SqlParameter("@firstName", last);
-      cmd.Parameters.Add(firstParam);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       int id = 0;
