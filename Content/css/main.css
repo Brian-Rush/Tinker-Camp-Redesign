@@ -708,4 +708,57 @@ footer .social {
   font-size: 2.5em;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main .logo {
+  display: flex;
+  justify-content: center;
+}
+main .logo img {
+  width: 90%;
+}
+main form {
+  margin: 10px;
+}
+main form .label-input {
+  display: flex;
+  margin: 5px 0;
+}
+main form .label-input label {
+  margin-right: 5px;
+}
+main form .label-input input {
+  flex-grow: 1;
+  background-color: lightgrey;
+  border: none;
+}
+main form .child-nav input {
+  margin: 0 10px;
+}
+main form .accordion {
+  background: #4F5A7F;
+  color: white;
+  font-family: "Istok Web", sans-serif;
+  padding: 10px 5px;
+}
+main form .panel-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+main form input[type="button"],
+main form input[type="submit"] {
+  background: #4F5A7F;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  font-family: "Istok Web", sans-serif;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
 /*# sourceMappingURL=main.css.map */
