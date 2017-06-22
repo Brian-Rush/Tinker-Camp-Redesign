@@ -20,7 +20,7 @@ namespace Tinker
 
       Post["/"] = _ => {
         Parent testParent = null;
-        if(Parent.GetParent(Request.Form["guardian-last-name"]).GetFirstName() == null)
+        if(Parent.GetParent(Request.Form["guardian-last-name"], Request.Form["guardian-first-name"]).GetFirstName() == null)
         {
           var firstName = Request.Form["guardian-first-name"];
           var secondName = Request.Form["guardian-last-name"];
@@ -39,7 +39,7 @@ namespace Tinker
         else
         {
           testParent = Parent.GetParent(Request.Form["guardian-last-name"]);
-          testParent.Save();
+          // testParent.Save();
           Console.WriteLine("TEST AGIN");
         }
 

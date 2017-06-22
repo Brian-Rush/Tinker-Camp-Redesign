@@ -18,11 +18,11 @@
       </div>
     </header>
     <main>
-      <form name="reg-form" class="reg-form" action="index.html" method="post">
+      <form name="reg-form" class="reg-form" action="/" method="post">
         <div class="accordion">Step 1 - Guardian Information</div>
         <div class="step-1 panel">
           <label for="guardian-first-name">Guardian First Name:</label>
-          <input type="text" name="guardianFirstName" max-length="50" required>
+          <input type="text" name="guardian-first-name" max-length="50" required>
           <label for="guardian-last-name">Guardian Last Name:</label>
           <input type="text" name="guardian-last-name" max-length="50" required>
           <label for="guardian-street-address">Street Address:</label>
@@ -37,8 +37,8 @@
           <input class="phone" type="tel" name="guardian-phone" required>
           <label for="guardian-email">Email:</label>
           <input type="email" name="guardian-email">
-          <!-- <label for="purchase-code">Purchase Code:</label>
-          <input type="text" name="purchase-code"> -->
+          <label for="purchase-code">Purchase Code:</label>
+          <input type="text" name="purchase-code">
           <input type="button" class="parent-continue" value="Continue"></input>
         </div>
         <div class="accordion">Step 2 - Child Information</div>
@@ -96,10 +96,45 @@
           <label for="child-phone">Phone:</label>
           <input class="phone" type="text" name="child-phone">
           <select class="session session-0" name="session">
-            <option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)" selected>Miniature Worlds (7/10-7/14)</option>
-            <option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option>
-            <option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option>
-            <option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option>
+            @foreach(var workshop in @Model)
+            {
+              @if(workshop.GetId() == 1 && workshop.ListEnrolled().Count < 20)
+              {
+                <option name="miniature-worlds" value="Miniature Worlds (7/10-7/14)" selected>Miniature Worlds (7/10-7/14)</option>
+              }
+              else if(workshop.GetId() == 1 && workshop.ListEnrolled().Count >= 20)
+              {
+                <option name="miniature-worlds" disabled> *FULL* Miniature Worlds (7/10-7/14)</option>
+              }
+              else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count < 20)
+              {
+                <option name="carnival" value="Carnival (7/17-7/21)">Carnival (7/17-7/21)</option>
+              }
+              else if(workshop.GetId() == 2 && workshop.ListEnrolled().Count >= 20)
+              {
+                <option name="carnival" disabled>*FULL* Carnival (7/17-7/21)</option>
+              }
+              else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count < 20)
+              {
+                <option name="flight" value="Flight (7/24-7/28)">Flight (7/24-7/28)</option>
+              }
+              else if(workshop.GetId() == 3 && workshop.ListEnrolled().Count >= 20)
+              {
+                <option name="flight" disabled> *FULL* Flight (7/24-7/28)</option>
+              }
+              else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count < 20)
+              {
+                <option name="urban-adventure" value="Urban Adventure (7/31-8/4)">Urban Adventure (7/31-8/4)</option>
+              }
+              else if(workshop.GetId() == 4 && workshop.ListEnrolled().Count >= 20)
+              {
+                <option name="urban-adventure" disabled> *FULL* Urban Adventure (7/31-8/4)</option>
+              }
+              else
+              {
+                <option>Error 121 = foreach loop is out of index</option>
+              }
+            }
           </select>
           <div class="hidden-div"></div>
           <input value="+" onclick="onClick()" type="button" name="add-a-session" id="add-a-session"></input>
@@ -211,15 +246,15 @@
             </tr> -->
           </table>
           <input type="button" class="edit-child" name="edit-child" value="Edit Child Information"></input>
-          <input type="submit" name="register">Confirm & Submit</input>
+          <input type="submit" name="register" value="Confirm & Submit"></input>
         </div>
       </form>
 
     </main>
     <footer>
-      <input type="button">Register Today</input>
-      <input type="button">Contact Us</input>
-      <input type="button">Join the List</input>
+      <input type="button" value="Register Today"></input>
+      <input type="button" value="Contact Us"></input>
+      <input type="button" value="Join the List"></input>
       <div class="social">
         <i>facebook</i>
         <i>twitter</i>
