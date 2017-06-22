@@ -410,6 +410,10 @@ template {
   display: none;
 }
 
+.tinker-blurb form button {
+  text-transform: uppercase;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -580,6 +584,32 @@ header #mobile-nav.open {
   -ms-transition: height, 0.3s linear;
   -o-transition: height, 0.3s linear;
   transition: height, 0.3s linear;
+}
+
+.hero-img {
+  height: 300px;
+  overflow: hidden;
+}
+.hero-img img {
+  width: 100%;
+}
+
+.tinker-blurb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tinker-blurb p {
+  padding: 0 20px;
+}
+.tinker-blurb form {
+  margin: 20px 0;
+}
+.tinker-blurb form button {
+  background: #4F5A7F;
+  color: white;
+  padding: 1em 2em;
+  border: none;
 }
 
 /*# sourceMappingURL=main.css.map */
