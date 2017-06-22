@@ -1,9 +1,17 @@
 $breakpoint-medium: "only screen and (min-width: 760px)";
 $breakpoint-large: "only screen and (min-width: 1000px)";
 
+//Color hex codes
+
+$main-color: #4F5A7F;	// Main Primary color */
+$lightest: #D5D9E7;
+$light: #818AA7;
+$dark: #2E395A;
+$darkest: #151E3E;
+
 // hamburger accordion variables
 
-$base-border-color: gainsboro !default;
+$base-border-color: $lightest !default;
 $base-line-height: 1.5em !default;
 $base-spacing: 1.5em !default;
 $dark-gray: #333 !default;
