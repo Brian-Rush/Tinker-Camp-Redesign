@@ -313,20 +313,6 @@ namespace Tinker
       return newChild;
     }
 
-    public static void DeleteAll()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("DELETE FROM Child_Object", conn);
-      cmd.ExecuteNonQuery();
-
-      if(conn != null)
-      {
-        conn.Close();
-      }
-    }
-
     public void Delete(int id)
     {
       SqlConnection conn = DB.Connection();
@@ -343,7 +329,20 @@ namespace Tinker
       {
         conn.Close();
       }
+    }
 
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM Child_Object", conn);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }
