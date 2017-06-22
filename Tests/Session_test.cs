@@ -7,38 +7,38 @@ using System.Data.SqlClient;
 namespace Tinker
 {
   [Collection("Tinker")]
-  public class SessionTest : IDisposable
+  public class WorkshopTest : IDisposable
   {
-    public SessionTest()
+    public WorkshopTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=tinker_test;Integrated Security=SSPI;";
     }
     [Fact]
-    public void FindSession_FindsSessionInDataBase_True()
+    public void FindWorkshop_FindsWorkshopInDataBase_True()
     {
-      Session newSession = new Session("Miniature World");
-      newSession.Save();
+      Workshop newWorkshop = new Workshop("Miniature World");
+      newWorkshop.Save();
 
-      Session testSession = Session.Find(newSession.GetId());
+      Workshop testWorkshop = Workshop.Find(newWorkshop.GetName());
 
-      Assert.Equal("Miniature World", testSession.GetName());
+      Assert.Equal("Miniature World", testWorkshop.GetName());
     }
 
     [Fact]
-    public void AddSession_AddChildToSessions_True()
+    public void AddWorkshop_AddChildToWorkshops_True()
     {
-      Child newChild = new Child("Hunter", "Parks", 8, 5, "male" , "native american",  "thisisanaddress", "city", "State",  12345, "12345");
+      Child newChild = new Child("Hunter", "Parks", "8", "5", "male" , "native american",  "thisisanaddress", "city", "State",  "12345", "12345");
       newChild.Save();
 
-      Session findSession = new Session("Miniature World", 1);
-      findSession.Save();
+      Workshop findWorkshop = new Workshop("Miniature World", 1);
+      findWorkshop.Save();
 
-      Session testSession = Session.Find(findSession.GetId());
-      Console.WriteLine(testSession.GetName());
+      Workshop testWorkshop = Workshop.Find(findWorkshop.GetName());
+      Console.WriteLine(testWorkshop.GetName());
 
-      testSession.AddChild(newChild);
+      testWorkshop.AddChild(newChild);
 
-      List<Child> allChildrenEnrolled = testSession.ListEnrolled();
+      List<Child> allChildrenEnrolled = testWorkshop.ListEnrolled();
       List<Child> controlChildren = new List<Child>{newChild};
 
       Assert.Equal(controlChildren[0].GetFirstName(), allChildrenEnrolled[0].GetFirstName());
@@ -46,7 +46,7 @@ namespace Tinker
 
     public void Dispose()
     {
-      Session.DeleteAll();
+      Workshop.DeleteAll();
     }
   }
 

@@ -17,7 +17,7 @@ namespace Tinker
     [Fact]
     public void CheckForDouble_Parent_Parent()
     {
-      Parent controlParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      Parent controlParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
       controlParent.Save();
 
       List<Parent> testParent = Parent.GetAll();
@@ -28,9 +28,9 @@ namespace Tinker
     [Fact]
     public void FindParent_FindsParentInDataBase_True()
     {
-      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
       testParent.Save();
-      Parent newParent = new Parent("James", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      Parent newParent = new Parent("James", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
       newParent.Save();
 
       Parent allParent = Parent.Find(testParent.GetId());
@@ -38,12 +38,24 @@ namespace Tinker
     }
 
     [Fact]
+    public void GetParent_GetParentInDataBase_True()
+    {
+      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
+      testParent.Save();
+      Parent newParent = new Parent("James", "Richard", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
+      newParent.Save();
+
+      Parent allParent = Parent.GetParent(testParent.GetLastName());
+      Assert.Equal(testParent, allParent);
+    }
+
+    [Fact]
     public void UpdateParent_UpdatesParentFirstName_True()
     {
-      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      Parent testParent = new Parent("Hunter", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
       testParent.Save();
 
-      testParent.Update("James", "Parks", "thisisanaddress", "city" ,"State",  12345, "12345", "email@email.com", "ActivationCODE");
+      testParent.Update("James", "Parks", "thisisanaddress", "city" ,"State",  "12345", "12345", "email@email.com", "ActivationCODE");
 
       Parent whatParent = Parent.GetAll()[0];
 

@@ -16,7 +16,7 @@ namespace Tinker
     [Fact]
     public void CheckForDouble_Child_Child()
     {
-      Child controlChild = new Child("Hunter", "Parks", 8, 5, "male" , "native american",  "thisisanaddress", "city", "State",  12345, "12345");
+      Child controlChild = new Child("Hunter", "Parks", "8", "5", "male" , "native american",  "thisisanaddress", "city", "State",  "12345", "12345");
       controlChild.Save();
 
       List<Child> testChild = Child.GetAll();
@@ -27,9 +27,9 @@ namespace Tinker
     [Fact]
     public void FindChild_FindsChildInDataBase_True()
     {
-      Child testChild = new Child("Hunter", "Parks", 8, 5, "male", "native american", "thisisanaddress", "city" ,"State",  12345, "12345");
+      Child testChild = new Child("Hunter", "Parks", "8", "5", "male", "native american", "thisisanaddress", "city" ,"State",  "12345", "12345");
       testChild.Save();
-      Child newChild = new Child("Hunter", "Parks", 8, 5, "male", "native american", "thisisanaddress", "city" ,"State",  12345, "12345");
+      Child newChild = new Child("Hunter", "Parks", "8", "5", "male", "native american", "thisisanaddress", "city" ,"State",  "12345", "12345");
       newChild.Save();
 
       Child allChild = Child.Find(testChild.GetId());
@@ -39,10 +39,10 @@ namespace Tinker
     [Fact]
     public void UpdateChild_UpdatesChildFirstName_True()
     {
-      Child testChild = new Child("Hunter", "Parks", 8, 5, "male", "native american", "thisisanaddress", "city" ,"State",  12345, "12345");
+      Child testChild = new Child("Hunter", "Parks", "8", "5", "male", "native american", "thisisanaddress", "city" ,"State", "12345", "12345");
       testChild.Save();
 
-      testChild.Update("James", "Parks", 8, 5, "male", "native american", "thisisanaddress", "city" ,"State",  12345, "12345");
+      testChild.Update("James", "Parks", "8", "5", "male", "native american", "thisisanaddress", "city" ,"State",  "12345", "12345");
 
       Child whatChild = Child.GetAll()[0];
 

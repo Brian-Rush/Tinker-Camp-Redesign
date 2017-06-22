@@ -2,12 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../css/main.css" media="screen" title="no title" charset="utf-8">
     <script src="https://use.fontawesome.com/e44e56f879.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
     <!-- <script src="js/jquery.maskedinput.js" type="text/javascript"></script> -->
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+    <link rel="stylesheet" href="/Content/css/styles.css">
     <title>Tinker Camp</title>
   </head>
   <body>
@@ -112,14 +129,23 @@
       <form action="/register">
         <button type="submit">Register Today</button>
       </form>
+      <form action="/donate">
+        <button type="submit">Dontate</button>
+      </form>
       @* the routes below are still unknown as pages hasn't been made yet *@
       <form action="/unknown">
         <button type="submit">Contact Us</button>
       </form>
       <button type="submit">Join the List</button>
       <div class="social">
-        <i>facebook</i>
-        <i>twitter</i>
+        <i><a href="https://www.facebook.com/TinkerCamp/">Facebook</a></i>
+        <i><a href="https://twitter.com/pdxtinkercamp">twitter</a></i>
+        @* <div class="timeline-widget">
+          <a class="twitter-timeline" href="https://twitter.com/pdxtinkercamp">Tinker Camp Twitter</a> <script async src="//platform.twitter.com/widgets.js:thumb" charset="utf-8"></script>
+          <a href="https://twitter.com/PDXTinkerCamp" class="twitter-follow-button" data-show-count="false">Follow PDXTinkerCamp</a>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        </div> *@
         <i>instagram</i>
       </div>
     </footer>

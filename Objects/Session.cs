@@ -4,12 +4,12 @@ using System.Data.SqlClient;
 
 namespace Tinker
 {
-  public class Session
+  public class Workshop
   {
     private int _id;
     private string _name;
 
-    public Session(string name, int id = 0)
+    public Workshop(string name, int id = 0)
     {
       _id = id;
       _name = name;
@@ -24,6 +24,37 @@ namespace Tinker
     {
       return _name;
     }
+
+    public static List<Workshop> GetAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Session_Object", conn);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Workshop> allWorkshop = new List<Workshop>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Workshop newWorkshop = new Workshop(name, id);
+        allWorkshop.Add(newWorkshop);
+      }
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      return allWorkshop;
+    }
+
 
     public void Save()
     {
@@ -52,38 +83,37 @@ namespace Tinker
       }
     }
 
-    public static Session Find(int findId)
+    public static Workshop Find(string findName)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM Session_Object WHERE id = @id", conn);
-      SqlParameter idParam = new SqlParameter("@id", findId);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Session_Object WHERE name = @name", conn);
+      SqlParameter idParam = new SqlParameter("@name", findName);
       cmd.Parameters.Add(idParam);
 
+      SqlDataReader rdr = cmd.ExecuteReader();
 
       int id = 0;
       string name = null;
 
-      SqlDataReader rdr = cmd.ExecuteReader();
       while(rdr.Read())
       {
         id = rdr.GetInt32(0);
         name = rdr.GetString(1);
       }
 
-      Session newSession = new Session(name, id);
+      Workshop newWorkshop = new Workshop(name, id);
 
-      if(conn != null)
-      {
-        conn.Close();
-
-      }
       if(rdr != null)
       {
         rdr.Close();
       }
-      return newSession;
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return newWorkshop;
     }
 
     public void AddChild(Child newChild)
@@ -91,7 +121,7 @@ namespace Tinker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO Child_Sessions (child_id, session_id) VALUES (@child_id, @session_id);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO Child_Sessions (child_id, session_id) VALUES (@child_id, @session_id); ", conn);
 
       SqlParameter childParameter = new SqlParameter("@child_id", newChild.GetId());
       cmd.Parameters.Add(childParameter);
@@ -125,14 +155,14 @@ namespace Tinker
         int id = rdr.GetInt32(0);
         string first = rdr.GetString(1);
         string last = rdr.GetString(2);
-        int age = rdr.GetInt32(3);
-        int grade = rdr.GetInt32(4);
+        string age = rdr.GetString(3);
+        string grade = rdr.GetString(4);
         string gender = rdr.GetString(5);
         string race = rdr.GetString(6);
         string address = rdr.GetString(7);
         string city = rdr.GetString(8);
         string state = rdr.GetString(9);
-        int zip = rdr.GetInt32(10);
+        string zip = rdr.GetString(10);
         string phone = rdr.GetString(11);
         Child newChild = new Child(first, last, age, grade, gender, race, address, city, state, zip, phone, id);
         allChildren.Add(newChild);
