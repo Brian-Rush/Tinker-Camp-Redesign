@@ -234,10 +234,9 @@ namespace Tinker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE Last = @LastName", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM Parent_Object WHERE Last = @LastName;", conn);
       SqlParameter idParam = new SqlParameter("@LastName", last);
       cmd.Parameters.Add(idParam);
-
       SqlDataReader rdr = cmd.ExecuteReader();
 
       int id = 0;
@@ -355,13 +354,13 @@ namespace Tinker
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Child (parent_id, child_id) VALUES (@parent_id, @session_id); ", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO Parent_Child (parent_id, child_id) VALUES (@parent_id, @child_id); ", conn);
 
-      SqlParameter childParameter = new SqlParameter("@parent_id", newChild.GetId());
+      SqlParameter ParentParameter = new SqlParameter("@parent_id", this.GetId());
+      cmd.Parameters.Add(ParentParameter);
+
+      SqlParameter childParameter = new SqlParameter("@child_id", newChild.GetId());
       cmd.Parameters.Add(childParameter);
-
-      SqlParameter sessionParameter = new SqlParameter("@session_id", this.GetId());
-      cmd.Parameters.Add(sessionParameter);
 
       cmd.ExecuteNonQuery();
 
