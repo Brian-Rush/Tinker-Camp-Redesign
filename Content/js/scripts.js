@@ -34,6 +34,17 @@ function childCount() {
 
 // FRONT END
 
+// main body tabs for mobile
+
+function switchTab(tabName) {
+    var i;
+    var x = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+}
+
 // Document Ready
 $(function() {
 

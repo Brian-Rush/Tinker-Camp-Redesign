@@ -79,86 +79,67 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
       <form action="/register">
-        <button type="submit">Register Today</button>
+        <button type="submit">Register Now</button>
       </form>
     </div>
     <main>
-      <ul class="accordion-tabs">
-        <li class="tab-header-and-content">
-          <a href="javascript:void(0)" class="is-active tab-link">Camps</a>
-          <div class="tab-content">
-            <section class="event-card camps">
-              <img src="" alt="" />
-              <h3>Session Title</h3>
-              <p>Session description Session description Session description Session description Session description</p>
-              <ul>
-                <li>Date</li>
-                <li>Time</li>
-                <li>Location</li>
-                <li>Cost</li>
-                <li>Hosts:</li>
-                <li>Spots left</li>
-                <li>Days left</li>
-              </ul>
-              <form action="/register">
-                <button type="submit">Register</button>
-              </form>
-            </section>
-          </div>
-        </li>
-        <li class="tab-header-and-content">
-          <a href="javascript:void(0)" class="tab-link">Other Events</a>
-          <div class="tab-content">
-            <section class="tab-content other-events">
-              <div class="event-card">
-                <img src="" alt="" />
-                <h3>Session Title</h3>
-                <p>Session description Session description Session description Session description Session description</p>
-                <ul> <!-- Staff can fill out form to generate this information, what doesn't get information automatically gets hidden -->
-                  <li>Date</li>
-                  <li>Time</li>
-                  <li>Location</li>
-                  <li>Cost</li>
-                  <li>Hosts:</li>
-                  <li>Spots left</li>
-                  <li>Days left</li>
-                </ul>
-                <form action="/register">
-                  <button type="submit">Register Today</button>
-                </form>
-              </div>
-            </section>
-          </div>
-        </li>
-        <li class="tab-header-and-content">
-          <a href="javascript:void(0)" class="tab-link">For Educators</a>
-            <section class="tab-content educators">
-              <div class="educator-tab">
-                <h3>What we offer</h3>
-                <p>
-                  Workshops
-                </p>
-                <p>
-                  Program design
-                </p>
-                <p>
-                  Embedding
-                </p>
-                <h3>Events</h3>
-                <h3>Resources</h3>
-              </div>
-            </section>
-        </li>
-        <li class="tab-header-and-content">
-          <a href="javascript:void(0)" class="tab-link">Last Item</a>
-          <div class="tab-content">
-            <p>Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus dui urna.</p>
-          </div>
-        </li>
-      </ul>
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button" onclick="switchTab('camps')">Camps</button>
+        <button class="w3-bar-item w3-button" onclick="switchTab('other-events-tab')">Other Events</button>
+        <button class="w3-bar-item w3-button" onclick="switchTab('edu-tab')">For Educators</button>
+      </div>
+      <div id="camps" class="tab">
+        <h2>Camps</h2>
+        <h3>Session Title</h3>
+        <p>Session description Session description Session description Session description Session description</p>
+        <ul>
+          <li>Date</li>
+          <li>Time</li>
+          <li>Location</li>
+          <li>Cost</li>
+          <li>Hosts:</li>
+          <li>Spots left</li>
+          <li>Days left</li>
+        </ul>
+        <form action="/register">
+          <button type="submit">Register</button>
+        </form>
+      </div>
 
+      <div id="other-events-tab" class="tab" style="display:none">
+        <h2>Other Events</h2>
+        <img src="" alt="" />
+        <h3>Session Title</h3>
+        <p>Session description Session description Session description Session description Session description</p>
+        <ul> <!-- Staff can fill out form to generate this information, what doesn't get information automatically gets hidden -->
+          <li>Date</li>
+          <li>Time</li>
+          <li>Location</li>
+          <li>Cost</li>
+          <li>Hosts:</li>
+          <li>Spots left</li>
+          <li>Days left</li>
+        </ul>
+        <form action="/register">
+          <button type="submit">Register Today</button>
+        </form>
+      </div>
 
-
+      <div id="edu-tab" class="tab" style="display:none">
+        <h2>For Educators</h2>
+        <h3>What we offer</h3>
+        <p>
+          Workshops
+        </p>
+        <p>
+          Program design
+        </p>
+        <p>
+          Embedding
+        </p>
+        <h3>Events</h3>
+        <h3>Resources</h3>
+      </div>
     </main>
     <footer>
       <form action="/register">
