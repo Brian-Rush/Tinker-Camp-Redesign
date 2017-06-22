@@ -3,7 +3,7 @@
 ###### A project made by *_Hunter Parks, Brian Rush, Connor Larsen , Nick Wise_*
 
 ### Description
-Tinker Camp is a *_non-profit_* organization that specializes in helping children and pre-teens creating and  BLACNK. Currently, this website has the capabilities to register Adults and their children into our fun camps we offer.
+Tinker Camp is a *_non-profit_* organization that helps children and pre-teens acquire essential mindsets and empowers them by trusting them with tools and encouraging their curiosity. Currently, this website is optimized for mobile only and has the capabilities to register adults and their children into our camps.
 
 The video below demonstrates that Tinker Camp uses narrative or story to increase the engagement of kids as they develop STEM-related skills.
 
