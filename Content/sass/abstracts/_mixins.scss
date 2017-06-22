@@ -1,0 +1,8 @@
+@mixin button-style {
+  background: $main-color;
+  color: white;
+  padding: 1em 2em;
+  border: none;
+  font-family: $title-font;
+  text-transform: uppercase;
+}

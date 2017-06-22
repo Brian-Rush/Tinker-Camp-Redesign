@@ -1,7 +1,11 @@
 header {
   .logo {
-    img:nth-child(2) {
+    padding: 10px;
+    img:nth-child(1) {
       display: none;
+    }
+    img:nth-child(2) {
+      width: 70vw;
     }
   }
   .head-bar {
@@ -84,6 +88,7 @@ header {
     width: 100vw;
     height: 0;
     overflow: hidden;
+    position: absolute;
     -webkit-transition: height, 0.3s linear;
     -moz-transition: height, 0.3s linear;
     -ms-transition: height, 0.3s linear;
