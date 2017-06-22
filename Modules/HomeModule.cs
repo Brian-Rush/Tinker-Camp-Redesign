@@ -20,13 +20,14 @@ namespace Tinker
 
       Post["/"] = _ => {
         Parent testParent = null;
-        if(Parent.GetParent(Request.Form["guardian-last-name"]) == null)
+        if(Parent.GetParent(Request.Form["guardian-last-name"]).GetFirstName() == null)
         {
           var firstName = Request.Form["guardian-first-name"];
           var secondName = Request.Form["guardian-last-name"];
           var address = Request.Form["guardian-street-address"];
           var city = Request.Form["guardian-city"];
           var state = Request.Form["guardian-state"];
+          Console.WriteLine("TESTING!!!!!!!!!!!!!!");
 
           var zip = (Request.Form["guardian-zip"]);
           var phone = Request.Form["guardian-phone"];
@@ -38,6 +39,8 @@ namespace Tinker
         else
         {
           testParent = Parent.GetParent(Request.Form["guardian-last-name"]);
+          testParent.Save();
+          Console.WriteLine("TEST AGIN");
         }
 
         var childFirstName = Request.Form["child-first-name"];
