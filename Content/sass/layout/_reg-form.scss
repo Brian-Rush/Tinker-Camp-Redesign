@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  .logo {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 90%;
+    }
+  }
+  form {
+    margin: 10px;
+    .label-input {
+      display: flex;
+      margin: 5px 0;
+      label {
+        margin-right: 5px;
+      }
+      input {
+        flex-grow: 1;
+        background-color: lightgrey;
+        border: none;
+      }
+    }
+    .child-nav {
+      input {
+        margin: 0 10px;
+      }
+    }
+    .accordion {
+      background: $main-color;
+      color: white;
+      font-family: $title-font;
+      padding: 10px 5px;
+    }
+    .panel-body {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+    input[type="button"],
+    input[type="submit"] {
+      @include button-style;
+      margin-top: 5px;
+    }
+  }
+}
